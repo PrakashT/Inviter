@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TemplateCollectionViewCellID" id="gTV-IL-0wX" customClass="TemplateCollectionViewCell" customModule="Inviter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39G-rG-9op">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRB-ZR-8wP">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Test_Template_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="PAB-I8-PIa">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcP-eZ-RhH">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romentic wedding fdf dffdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gS4-aE-3Og">
+                                        <rect key="frame" x="15" y="10" width="125" height="35"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_white" translatesAutoresizingMaskIntoConstraints="NO" id="MR9-0S-iZ0">
+                                        <rect key="frame" x="63" y="47.5" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="MR9-0S-iZ0" secondAttribute="height" multiplier="1:1" id="w3C-kF-adD"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="MR9-0S-iZ0" firstAttribute="width" secondItem="lRB-ZR-8wP" secondAttribute="height" multiplier="3:10" constant="-12" id="1L1-Xn-YYb"/>
+                                    <constraint firstItem="VcP-eZ-RhH" firstAttribute="width" secondItem="lRB-ZR-8wP" secondAttribute="width" id="6LD-T8-8Ro"/>
+                                    <constraint firstItem="gS4-aE-3Og" firstAttribute="top" secondItem="lRB-ZR-8wP" secondAttribute="top" constant="10" id="PcX-qQ-lxz"/>
+                                    <constraint firstItem="VcP-eZ-RhH" firstAttribute="centerX" secondItem="lRB-ZR-8wP" secondAttribute="centerX" id="aSl-Dj-EzJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="PAB-I8-PIa" secondAttribute="trailing" id="bpH-3Q-Eqm"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gS4-aE-3Og" secondAttribute="bottom" constant="10" id="eJm-Ms-FDS"/>
+                                    <constraint firstAttribute="bottom" secondItem="PAB-I8-PIa" secondAttribute="bottom" id="g57-0h-jPT"/>
+                                    <constraint firstItem="MR9-0S-iZ0" firstAttribute="centerX" secondItem="lRB-ZR-8wP" secondAttribute="centerX" id="hnB-el-g4a"/>
+                                    <constraint firstItem="gS4-aE-3Og" firstAttribute="leading" secondItem="lRB-ZR-8wP" secondAttribute="leading" constant="15" id="iGr-HD-WHU"/>
+                                    <constraint firstItem="VcP-eZ-RhH" firstAttribute="height" secondItem="lRB-ZR-8wP" secondAttribute="height" id="kEX-bf-0U7"/>
+                                    <constraint firstAttribute="trailing" secondItem="gS4-aE-3Og" secondAttribute="trailing" constant="10" id="mxF-hi-UcH"/>
+                                    <constraint firstItem="MR9-0S-iZ0" firstAttribute="centerY" secondItem="lRB-ZR-8wP" secondAttribute="centerY" id="scb-ON-6R9"/>
+                                    <constraint firstItem="PAB-I8-PIa" firstAttribute="top" secondItem="lRB-ZR-8wP" secondAttribute="top" id="ulw-yX-cI3"/>
+                                    <constraint firstItem="VcP-eZ-RhH" firstAttribute="centerY" secondItem="lRB-ZR-8wP" secondAttribute="centerY" id="vKD-a8-axf"/>
+                                    <constraint firstItem="PAB-I8-PIa" firstAttribute="leading" secondItem="lRB-ZR-8wP" secondAttribute="leading" id="zLy-Sh-hmc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lRB-ZR-8wP" secondAttribute="trailing" id="Z9j-Qj-3DF"/>
+                            <constraint firstItem="lRB-ZR-8wP" firstAttribute="top" secondItem="39G-rG-9op" secondAttribute="top" id="mTZ-aC-LWe"/>
+                            <constraint firstItem="lRB-ZR-8wP" firstAttribute="leading" secondItem="39G-rG-9op" secondAttribute="leading" id="ob6-WY-kls"/>
+                            <constraint firstAttribute="bottom" secondItem="lRB-ZR-8wP" secondAttribute="bottom" id="zuf-Ma-kYl"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="39G-rG-9op" secondAttribute="bottom" id="4kE-OM-Mz4"/>
+                <constraint firstItem="39G-rG-9op" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gC6-PL-eTl"/>
+                <constraint firstItem="39G-rG-9op" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ha9-PG-w8g"/>
+                <constraint firstAttribute="trailing" secondItem="39G-rG-9op" secondAttribute="trailing" id="jJM-D8-UlH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="116" height="111"/>
+            <connections>
+                <outlet property="thumbnailImageView" destination="PAB-I8-PIa" id="qQs-it-yig"/>
+                <outlet property="titleLabel" destination="gS4-aE-3Og" id="3KU-5B-Mjf"/>
+            </connections>
+            <point key="canvasLocation" x="67" y="84"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Test_Template_Icon" width="528" height="296"/>
+        <image name="play_white" width="25" height="25"/>
+    </resources>
+</document>
