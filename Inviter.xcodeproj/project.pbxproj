@@ -40,6 +40,8 @@
 		A8C270302130816A0015C4CD /* TemplateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C2702E2130816A0015C4CD /* TemplateCollectionViewCell.xib */; };
 		A8C270322130914B0015C4CD /* HomeCategoryTableViceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C270312130914B0015C4CD /* HomeCategoryTableViceCell.swift */; };
 		A8C27034213095A00015C4CD /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C27033213095A00015C4CD /* CategoryCollectionViewCell.xib */; };
+		A8CEAFB9213720830051E307 /* ChooseMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CEAFB7213720830051E307 /* ChooseMusicTableViewCell.swift */; };
+		A8CEAFBA213720830051E307 /* ChooseMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8CEAFB8213720830051E307 /* ChooseMusicTableViewCell.xib */; };
 		A8D577AF212DE73200332803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577AE212DE73200332803 /* AppDelegate.swift */; };
 		A8D577B1212DE73200332803 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577B0212DE73200332803 /* InitialViewController.swift */; };
 		A8D577B4212DE73200332803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D577B2212DE73200332803 /* Main.storyboard */; };
@@ -104,6 +106,8 @@
 		A8C2702E2130816A0015C4CD /* TemplateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemplateCollectionViewCell.xib; sourceTree = "<group>"; };
 		A8C270312130914B0015C4CD /* HomeCategoryTableViceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryTableViceCell.swift; sourceTree = "<group>"; };
 		A8C27033213095A00015C4CD /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		A8CEAFB7213720830051E307 /* ChooseMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicTableViewCell.swift; sourceTree = "<group>"; };
+		A8CEAFB8213720830051E307 /* ChooseMusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseMusicTableViewCell.xib; sourceTree = "<group>"; };
 		A8D577AB212DE73200332803 /* Inviter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inviter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D577AE212DE73200332803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8D577B0212DE73200332803 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				A8C270312130914B0015C4CD /* HomeCategoryTableViceCell.swift */,
 				A88B10802131B6AD00F624DE /* MyVideosTableViewCell.swift */,
 				A88B10812131B6AD00F624DE /* MyVideosTableViewCell.xib */,
+				A8CEAFB7213720830051E307 /* ChooseMusicTableViewCell.swift */,
+				A8CEAFB8213720830051E307 /* ChooseMusicTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 			files = (
 				A8C270302130816A0015C4CD /* TemplateCollectionViewCell.xib in Resources */,
 				A88B107B2131310D00F624DE /* ShowAllCollectionViewCell.xib in Resources */,
+				A8CEAFBA213720830051E307 /* ChooseMusicTableViewCell.xib in Resources */,
 				A88B10832131B6AD00F624DE /* MyVideosTableViewCell.xib in Resources */,
 				A8C27034213095A00015C4CD /* CategoryCollectionViewCell.xib in Resources */,
 				A88B10852131DA9800F624DE /* LaunchScreen.storyboard in Resources */,
@@ -572,6 +579,7 @@
 				8EF6632F2136E7050085E02D /* ChooseMusicViewController.swift in Sources */,
 				8EF663312136E84E0085E02D /* TemplateTitleViewController.swift in Sources */,
 				8EF663352136E8B60085E02D /* TemplateEditViewController.swift in Sources */,
+				A8CEAFB9213720830051E307 /* ChooseMusicTableViewCell.swift in Sources */,
 				A81795D0212F4C040018D00E /* HomeViewController.swift in Sources */,
 				A888BB8121331FB4004C04A7 /* Templates.swift in Sources */,
 				A8D577AF212DE73200332803 /* AppDelegate.swift in Sources */,
