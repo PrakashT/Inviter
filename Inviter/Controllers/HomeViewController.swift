@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var categoryScrollView: UIScrollView!
     @IBOutlet weak var categoryView: UIView!
     
-    private var CategoriesList = [Category]()
+//    private var CategoriesList = [Category]()
     private var CategoriesList_Generic = [Category]()
     private var CategoriesList_Specific = [Category]()
 
@@ -67,7 +67,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.homeCellType = (indexPath.section == 1) ? HomeCollectionCellType.Template : HomeCollectionCellType.Catergory
         if indexPath.section == 0
         {
-            cell.updateCategoriesViewData(categories: CategoriesList)
+            cell.updateCategoriesViewData(categories: self.CategoriesList_Generic) // This is for home showall data
         }
         else
         {
@@ -136,9 +136,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    fileprivate func getCategoriesList()
+    fileprivate func getCategoriesList(categoryType:CategoryType)
     {
-        NetworkManager.Instance.getCategories(AppHelper.Instance.getUserAuthParameters(), withCompletionHandler: { (catResponse) in
+        NetworkManager.Instance.getCategories(type:categoryType, userAuthParameters:AppHelper.Instance.getUserAuthParameters(), withCompletionHandler: { (catResponse) in
             
             print("RESTTTTTT: getCategories "+catResponse.description)
             
@@ -147,11 +147,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let categoryDic =
                     Category(id: data["id"].int ?? 0, categoryName: (data["category_name"].description) , generic: Generic(rawValue: (data["generic"].description) )!, image:  (data["image"].description) , firebaseID: (data["firebase_id"].description ) , createdAt: (data["created_at"].description) , updatedAt: (data["updated_at"].description) )
                 
-                self.CategoriesList.append(categoryDic)
+//                self.CategoriesList.append(categoryDic)
+                
+                // Based on category type data will update
+                if(categoryType == .Generic)
+                {
+                    self.CategoriesList_Generic.append(categoryDic)
+                }
+                else
+                {
+                    self.CategoriesList_Specific.append(categoryDic)
+                }
             }
 
-            self.CategoriesList_Generic = self.CategoriesList.filter{ ($0.generic.rawValue == "generic") }
-            self.CategoriesList_Specific = self.CategoriesList.filter{ ($0.generic.rawValue == "specific") }
+//            self.CategoriesList_Generic = self.CategoriesList.filter{ ($0.generic.rawValue == "generic") }
+//            self.CategoriesList_Specific = self.CategoriesList.filter{ ($0.generic.rawValue == "specific") }
             
             self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.automatic)
             self.specificCategoryCollectionVw.reloadData()
@@ -167,7 +177,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for data in catResponse.array!
             {
-                let dic = Template(id: data["id"].int ?? 0, category: data["category"].int ?? 0, categoryName: CategoryName(rawValue: data["category_name"].description )!, type: TypeEnum(rawValue: data["type"].description ?? "")!, price: data["price"].description ?? "", priceInr: data["price_inr"].description ?? "", priceSar: data["price_sar"].description ?? "", code: data["type"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description )!)
+                let dic = Template(id: data["id"].int ?? 0, category: data["category"].int ?? 0, categoryName: CategoryName(rawValue: data["category_name"].description ), type: TypeEnum(rawValue: data["type"].description ), price: data["price"].description , priceInr: data["price_inr"].description ?? "", priceSar: data["price_sar"].description ?? "", code: data["type"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description ))
                 
                 self.TemplatesList.append(dic)
             }
@@ -186,7 +196,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 UserDefaults.standard.set(response["data"]["userAPIKeys"]["accessToken"].description, forKey: "accessToken") //Bool
                 UserDefaults.standard.synchronize()
 
-                self.getCategoriesList()
+                self.getCategoriesList(categoryType: .Generic)
+                self.getCategoriesList(categoryType: .Specific)
+
                 self.getTemplatesList()
             }
             else

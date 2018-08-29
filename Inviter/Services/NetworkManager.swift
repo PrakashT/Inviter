@@ -112,7 +112,7 @@ class NetworkManager: NSObject
 //            }
 //        }
         
-        Alamofire.request( APIConstants.CHECK_MAIL , method:HTTPMethod.post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
+        Alamofire.request(APIConstants.CHECK_MAIL , method:HTTPMethod.post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
 
             print(#function+"response ::::---  :", response)
 
@@ -172,11 +172,16 @@ class NetworkManager: NSObject
         })
     }
     
-    func getCategories(_ userAuthParameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    func getCategories(type:CategoryType, userAuthParameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
-        print(#function+"LINK:", APIConstants.GET_CATEGORIES)
-        
-        Alamofire.request( APIConstants.GET_CATEGORIES , method: .get, headers: userAuthParameters).responseJSON(completionHandler: { response -> Void in
+        var url = APIConstants.GET_CATEGORIES_GENERIC
+        if(type == .Specific)
+        {
+            url = APIConstants.GET_CATEGORIES_SPECIFIC
+        }
+        print(#function+"LINK:", url)
+
+        Alamofire.request(url , method: .get, headers: userAuthParameters).responseJSON(completionHandler: { response -> Void in
             
             print(#function+"response ::::---  :", response)
             
@@ -205,7 +210,7 @@ class NetworkManager: NSObject
     
     func getTemplates(_ userAuthParameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
-        print(#function+"LINK:", APIConstants.GET_CATEGORIES)
+        print(#function+"LINK:", APIConstants.GET_TEMPLATES)
         
         Alamofire.request( APIConstants.GET_TEMPLATES , method: .get, headers: userAuthParameters).responseJSON(completionHandler: { response -> Void in
             

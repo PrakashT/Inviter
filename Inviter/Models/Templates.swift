@@ -16,13 +16,13 @@ import Foundation
 typealias Templates = [Template]
 
 struct Template: Codable {
-    let id, category: Int
-    let categoryName: CategoryName
-    let type: TypeEnum
-    let price, priceInr, priceSar, code: String
-    let templateTitle, thumbnail, video, definition: String
-    let createdAt, updatedAt: String
-    let baseURL: BaseURL
+    let id, category: Int?
+    let categoryName: CategoryName?
+    let type: TypeEnum?
+    let price, priceInr, priceSar, code: String?
+    let templateTitle, thumbnail, video, definition: String?
+    let createdAt, updatedAt: String?
+    let baseURL: BaseURL?
     
     enum CodingKeys: String, CodingKey {
         case id, category

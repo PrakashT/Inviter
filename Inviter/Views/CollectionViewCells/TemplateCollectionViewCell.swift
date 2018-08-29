@@ -21,9 +21,9 @@ class TemplateCollectionViewCell: UICollectionViewCell {
     func updateData(template: Template)
     {
         titleLabel.text = template.templateTitle
-        if(template.thumbnail != "Empty" && template.thumbnail.count > 5)
+        if(template.thumbnail != "Empty" && (template.thumbnail?.count)! > 5)
         {
-            thumbnailImageView.sd_setImage(with: URL(string:template.thumbnail), completed: { (image, err, type, url) in
+            thumbnailImageView.sd_setImage(with: URL(string:template.thumbnail!), completed: { (image, err, type, url) in
                 //                self.activityIndicator.stopAnimating()
             })        }
     }

@@ -27,6 +27,9 @@ class APIConstants
     static let GET_USER_DETAILS = MA_API_BASE_HOST+"user/getuserdata/" // TODO: CHANGE IT TO ONSTANTSÍ
 
     static let GET_CATEGORIES = MA_API_BASE_HOST+"aemen/api/rest/new/categories/"
+    static let GET_CATEGORIES_GENERIC = GET_CATEGORIES+"?generic=generic"
+    static let GET_CATEGORIES_SPECIFIC = GET_CATEGORIES+"?generic=specific"
+
     static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/"
     static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/"
 
@@ -41,7 +44,5 @@ class APIConstants
     // MARK: API HOST Constants
     //    #if DEVELOPMENT
     static let MA_API_BASE_HOST = MA_BASE_URL //+ "api/v1/"
-    static let MA_BASE_URL = "http://testing.inviter.com/"
-
-    
+    static let MA_BASE_URL = "http://testing.inviter.com/"   
 }

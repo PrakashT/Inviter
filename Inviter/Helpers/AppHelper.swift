@@ -9,6 +9,11 @@
 import UIKit
 import Foundation
 
+enum CategoryType {
+    case Generic
+    case Specific
+}
+
 class AppHelper:NSObject {
     
     class var Instance: AppHelper
@@ -19,7 +24,7 @@ class AppHelper:NSObject {
         }
         return staticStruct.instance;
     }
-    
+  
     func getJSONStringfromDictionary(_ dictionary: Dictionary<String, String>) -> String {
         let jsonData = try? JSONSerialization.data(withJSONObject: dictionary, options: [])
         return String(data: jsonData!, encoding: .utf8)!

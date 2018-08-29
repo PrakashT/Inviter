@@ -44,6 +44,9 @@ class CategoryDetailViewController: UIViewController , UICollectionViewDataSourc
         layout.scrollDirection = .vertical
         layout.itemSize = cellSize
         layout.minimumLineSpacing = 10
+        
+        layout.headerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 200)
+        
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.reloadData()
         
@@ -52,12 +55,39 @@ class CategoryDetailViewController: UIViewController , UICollectionViewDataSourc
         
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
     {
-        return CGSize(width: collectionView.bounds.width, height: 200)
+        if section == 0
+        {
+            return CGSize(width: collectionView.bounds.width, height: 200)
+        }
+        return CGSize(width: collectionView.bounds.width, height: 50)
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: "", withReuseIdentifier: "CollectionHeaderViewID", for: indexPath as IndexPath)
+//    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+//        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: "", withReuseIdentifier: "CollectionHeaderViewID", for: indexPath as IndexPath)
+//
+//    }
+    
+     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
+        switch kind {
+            
+        case UICollectionElementKindSectionHeader:
+            var headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
+            if indexPath.section == 1
+            {
+                headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header2", for: indexPath)
+            }
+            return headerView
+            
+            //        case UICollectionElementKindSectionFooter:
+            //            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
+            //
+            //            footerView.backgroundColor = UIColor.green;
+            //            return footerView
+            
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
