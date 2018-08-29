@@ -1286,6 +1286,49 @@ to your loved ones</string>
             </objects>
             <point key="canvasLocation" x="3852" y="-949.47526236881572"/>
         </scene>
+        <!--Choose Music View Controller-->
+        <scene sceneID="RYt-kQ-rDj">
+            <objects>
+                <viewController id="ufc-Cc-m1f" customClass="ChooseMusicViewController" customModule="Inviter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6mO-t7-luW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wwA-n8-15l">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="me6-er-T8p" firstAttribute="bottom" secondItem="wwA-n8-15l" secondAttribute="bottom" id="IuP-qW-ftZ"/>
+                            <constraint firstItem="wwA-n8-15l" firstAttribute="top" secondItem="me6-er-T8p" secondAttribute="top" id="JwI-xe-Ufb"/>
+                            <constraint firstItem="me6-er-T8p" firstAttribute="trailing" secondItem="wwA-n8-15l" secondAttribute="trailing" id="TaS-0P-xmn"/>
+                            <constraint firstItem="wwA-n8-15l" firstAttribute="leading" secondItem="me6-er-T8p" secondAttribute="leading" id="pFz-te-pO1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="me6-er-T8p"/>
+                    </view>
+                    <connections>
+                        <outlet property="musicListTableView" destination="wwA-n8-15l" id="pCF-Go-LRH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFN-gF-aNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Template Title View Controller-->
+        <scene sceneID="9hl-TD-0UT">
+            <objects>
+                <viewController id="4DL-Vw-6dO" customClass="TemplateTitleViewController" customModule="Inviter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gOU-OT-I2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Flr-fZ-uK3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bd2-FU-oKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="1_Image_start" width="200" height="200"/>
