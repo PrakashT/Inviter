@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ufc-Cc-m1f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WfZ-Up-YaK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -416,7 +416,7 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vs9-FU-I2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570" y="106"/>
+            <point key="canvasLocation" x="-630" y="106"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="aW2-sb-LoU">
@@ -593,7 +593,7 @@ to your loved ones</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="77.599999999999994" y="114.69265367316342"/>
+            <point key="canvasLocation" x="6" y="122"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="cp8-F0-91p">
@@ -760,7 +760,7 @@ to your loved ones</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="807" y="115"/>
+            <point key="canvasLocation" x="1431" y="-43"/>
         </scene>
         <!--Home-->
         <scene sceneID="9qg-2f-10F">
@@ -1014,7 +1014,7 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPu-5I-y9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3092" y="439"/>
+            <point key="canvasLocation" x="3092" y="541"/>
         </scene>
         <!--MyVideos-->
         <scene sceneID="FJk-i6-2dn">
@@ -1318,6 +1318,7 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFN-gF-aNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="682" y="-537"/>
         </scene>
         <!--Template Title View Controller-->
         <scene sceneID="9hl-TD-0UT">
@@ -1332,6 +1333,41 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bd2-FU-oKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1369" y="791"/>
+        </scene>
+        <!--Template Edit View Controller-->
+        <scene sceneID="d5f-8D-mXM">
+            <objects>
+                <viewController id="WfZ-Up-YaK" customClass="TemplateEditViewController" customModule="Inviter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k1h-0r-kbm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1tT-jq-I3Z">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="WfZ-Up-YaK" id="YRe-FE-Ser"/>
+                                    <outlet property="delegate" destination="WfZ-Up-YaK" id="QX9-yj-hJd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eLz-Qh-8n8" firstAttribute="bottom" secondItem="1tT-jq-I3Z" secondAttribute="bottom" id="25q-wG-8Ho"/>
+                            <constraint firstItem="eLz-Qh-8n8" firstAttribute="trailing" secondItem="1tT-jq-I3Z" secondAttribute="trailing" id="bOx-dS-wE4"/>
+                            <constraint firstItem="1tT-jq-I3Z" firstAttribute="leading" secondItem="eLz-Qh-8n8" secondAttribute="leading" id="qTb-Cd-JLd"/>
+                            <constraint firstItem="1tT-jq-I3Z" firstAttribute="top" secondItem="eLz-Qh-8n8" secondAttribute="top" id="ytq-YX-7fN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eLz-Qh-8n8"/>
+                    </view>
+                    <connections>
+                        <outlet property="templateTableView" destination="1tT-jq-I3Z" id="oKx-Og-Ghz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K1R-gT-zVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="792"/>
         </scene>
     </scenes>
     <resources>
@@ -1350,6 +1386,6 @@ to your loved ones</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vW6-Ty-t6d"/>
-        <segue reference="dEz-jp-mjB"/>
+        <segue reference="TmU-R9-Is5"/>
     </inferredMetricsTieBreakers>
 </document>
