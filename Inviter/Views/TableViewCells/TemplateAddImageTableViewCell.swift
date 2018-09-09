@@ -17,8 +17,8 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         super.awakeFromNib()
         
 //        AppHelper.Instance.setDottedLineToView(yourView: dottedBGView)
-        dottedBGView.layer.borderColor = UIColor.red.cgColor
-        dottedBGView.layer.borderWidth = 5.0
+//        dottedBGView.layer.borderColor = UIColor.red.cgColor
+//        dottedBGView.layer.borderWidth = 5.0
         // Initialization code
         
         imagesCollectionView.register(UINib.init(nibName: "TemplateAddImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TemplateAddImageCollectionViewCellID")
@@ -34,9 +34,9 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
     func setCollectionViewCellSize(collectionView: UICollectionView)
     {
         let cellWidth = (collectionView.frame.width)/4
-        let cellSize = CGSize(width: cellWidth, height:cellWidth*1.0)
+        let cellSize = CGSize(width: cellWidth, height:(cellWidth*2.0)) // Every cell have two subcells data
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.itemSize = cellSize
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -50,15 +50,16 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
     @IBAction func showAddImagesViewButtonClicked(_ sender: UIButton)
     {
         dottedBGView.isHidden = true
+        imagesCollectionView.isHidden = false
     }
     
     // MARK: - UICollectionViewDataSource Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 7
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

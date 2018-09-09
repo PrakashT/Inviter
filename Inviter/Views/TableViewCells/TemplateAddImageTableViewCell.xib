@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipM-by-kHR">
                         <rect key="frame" x="10" y="14.5" width="528" height="395.5"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="6pa-Ub-fTE">
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="6pa-Ub-fTE">
                                 <rect key="frame" x="0.0" y="0.0" width="528" height="395.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tbc-gr-1FY">
@@ -38,7 +38,6 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.84705882349999995" green="0.14117647059999999" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6pa-Ub-fTE" secondAttribute="trailing" id="YAc-1m-WVQ"/>
                             <constraint firstAttribute="bottom" secondItem="6pa-Ub-fTE" secondAttribute="bottom" id="kiL-15-8YD"/>
@@ -49,6 +48,9 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npe-5Y-mo9">
                         <rect key="frame" x="20" y="20" width="498" height="385.5"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedLineIcon_Big" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-qw-XMV">
+                                <rect key="frame" x="0.0" y="-0.5" width="498" height="385.5"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ev-v9-ebe">
                                 <rect key="frame" x="41" y="118" width="416" height="150"/>
                                 <subviews>
@@ -91,7 +93,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXN-IN-yf5">
                                 <rect key="frame" x="0.0" y="-0.5" width="498" height="385.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="showAddImagesViewButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ymx-PL-bgz"/>
                                 </connections>
@@ -99,12 +100,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="fTq-qw-XMV" firstAttribute="centerY" secondItem="Npe-5Y-mo9" secondAttribute="centerY" id="7pt-GJ-FrO"/>
+                            <constraint firstItem="fTq-qw-XMV" firstAttribute="height" secondItem="Npe-5Y-mo9" secondAttribute="height" id="CnT-HM-PID"/>
                             <constraint firstAttribute="trailing" secondItem="6Ev-v9-ebe" secondAttribute="trailing" constant="41" id="N44-Ym-mrN"/>
+                            <constraint firstItem="fTq-qw-XMV" firstAttribute="width" secondItem="Npe-5Y-mo9" secondAttribute="width" id="NW7-8n-uxx"/>
                             <constraint firstItem="6Ev-v9-ebe" firstAttribute="leading" secondItem="Npe-5Y-mo9" secondAttribute="leading" constant="41" id="R0O-aS-Byq"/>
                             <constraint firstItem="zXN-IN-yf5" firstAttribute="centerY" secondItem="Npe-5Y-mo9" secondAttribute="centerY" id="UHS-VS-ZGj"/>
                             <constraint firstItem="zXN-IN-yf5" firstAttribute="centerX" secondItem="Npe-5Y-mo9" secondAttribute="centerX" id="XmL-av-3iG"/>
                             <constraint firstItem="6Ev-v9-ebe" firstAttribute="centerY" secondItem="Npe-5Y-mo9" secondAttribute="centerY" id="fhO-Fb-pKF"/>
                             <constraint firstItem="6Ev-v9-ebe" firstAttribute="centerX" secondItem="Npe-5Y-mo9" secondAttribute="centerX" id="kJT-yN-u3i"/>
+                            <constraint firstItem="fTq-qw-XMV" firstAttribute="centerX" secondItem="Npe-5Y-mo9" secondAttribute="centerX" id="l1X-Z0-HMW"/>
                             <constraint firstItem="zXN-IN-yf5" firstAttribute="width" secondItem="Npe-5Y-mo9" secondAttribute="width" id="uWn-2i-Ia7"/>
                             <constraint firstItem="zXN-IN-yf5" firstAttribute="height" secondItem="Npe-5Y-mo9" secondAttribute="height" id="zDh-s0-DgG"/>
                         </constraints>
@@ -131,6 +136,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="dottedLineIcon_Big" width="324" height="244"/>
         <image name="icon_add_image" width="57" height="56"/>
     </resources>
 </document>
