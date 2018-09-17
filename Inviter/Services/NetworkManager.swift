@@ -51,6 +51,57 @@ class NetworkManager: NSObject
     }
     
     // MARK: User Creation / Updation / Check User n Email Existance / ChnagePassword / GetUserInfo APIs
+    func postRequestData(_ parameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    {
+        print(#function+"LINK:", url)
+        print(#function+"parameters::::", parameters)
+        
+        Alamofire.request(url, method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
+            
+            print(#function+"response ::::---  :", response)
+            
+            guard let arrayData = response.value else{
+                
+                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
+                withCompletionHandler(nil)
+                
+                return
+            }
+            
+            switch response.result
+            {
+            case .success(let data):
+                let swiftyJsonVar = JSON(data)
+                
+                print(#function+"Success :")
+                
+                withCompletionHandler(swiftyJsonVar)
+                
+            case .failure(let error):
+                print("Request failed with error: \(error) response:", response)
+                withCompletionHandler(nil)
+            }
+        })
+    }
+    
+    func uploadImage(_ imageData:NSData, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    {
+        Alamofire.upload(multipartFormData: <#T##(MultipartFormData) -> Void#>, with: <#T##URLRequestConvertible#>, encodingCompletion: <#T##((SessionManager.MultipartFormDataEncodingResult) -> Void)?##((SessionManager.MultipartFormDataEncodingResult) -> Void)?##(SessionManager.MultipartFormDataEncodingResult) -> Void#>)(multipartFormData: { (form) in
+            form.append(imageData, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+        }, to: url, encodingCompletion: { result in
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseString { response in
+                    print(response.value)
+                    withCompletionHandler(swiftyJsonVar)
+                }
+                withCompletionHandler(swiftyJsonVar)
+            case .failure(let encodingError):
+                print(encodingError)
+                withCompletionHandler(nil)
+            }
+        })
+    }
     
     func createNewUser(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {

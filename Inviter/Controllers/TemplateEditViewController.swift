@@ -45,6 +45,7 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateAddImageTableViewCellID", for: indexPath) as! TemplateAddImageTableViewCell
+            cell.parentVC = self
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateEditMusicTableViewCellID", for: indexPath) as! TemplateEditMusicTableViewCell

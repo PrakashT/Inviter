@@ -75,6 +75,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tD8-F4-4rD">
                                                 <rect key="frame" x="-0.5" y="-1" width="123" height="132"/>
+                                                <connections>
+                                                    <action selector="addImageButton1Clicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="oCh-Zr-fg8"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -159,6 +162,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVX-Ik-iZx">
                                                 <rect key="frame" x="0.0" y="-0.5" width="123" height="126.5"/>
+                                                <connections>
+                                                    <action selector="addImageButton2Clicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="1Hv-Yu-9tY"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

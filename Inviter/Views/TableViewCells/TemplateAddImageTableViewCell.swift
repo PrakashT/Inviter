@@ -8,10 +8,13 @@
 
 import UIKit
 
-class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource {
+class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TemplateAddImageCollectionViewCellDelegate {
 
     @IBOutlet weak var dottedBGView: UIView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
+    var selectedAddImageButton: UIButton?
+    var parentVC: TemplateEditViewController!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,8 +68,76 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TemplateAddImageCollectionViewCellID", for: indexPath) as! TemplateAddImageCollectionViewCell
+        cell.delegate = self
         return cell
+        }
+    
+    // MARK:- TemplateAddImageCollectionViewCellDelegate Methods
+    func addImageButton1Clicked(_ sender: UIButton) {
+        downloadSheet(sender: sender)
+    }
+    
+    func addImageButton2Clicked(_ sender: UIButton) {
+        downloadSheet(sender: sender)
+    }
+    
+    // MARK:- Add Image Related Methods
+
+    @IBAction func downloadSheet(sender: UIButton)
+    {
+        selectedAddImageButton = sender
         
+        let alertController = UIAlertController(title: "Choose Option", message: "Please select option.", preferredStyle: UIAlertControllerStyle.actionSheet)
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+            self.openCameraButton()
+        }))
+        alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (action) in
+            self.openGallery()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        self.parentVC.present(alertController, animated: true, completion: nil)
+    }
+    
+    func openCameraButton() {
+       
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            var imagePicker = UIImagePickerController()
+//            imagePicker.delegate = self
+            imagePicker.sourceType = .camera;
+            imagePicker.allowsEditing = false
+            parentVC.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func openGallery()
+    {
+        var imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+        imagePickerController.allowsEditing = true
+        parentVC.present(imagePickerController, animated: true)
+    }
+    
+    func uploadImage(image: UIImage)
+    {
+        var dic = AppHelper.Instance.getUserAuthParameters()
+        let imgData = UIImageJPEGRepresentation(image, 0.2)!
+        
+        let parameters = ["name": rename] //Optional for extra parameter
+        
+       
+    }
+    
+    // MARK:- UIImagePickerController Delegates
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedAddImageButton?.contentMode = .center
+            selectedAddImageButton?.setImage(pickedImage, for: UIControlState.normal)
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
     
 }

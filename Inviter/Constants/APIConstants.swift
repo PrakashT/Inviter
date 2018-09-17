@@ -33,6 +33,8 @@ class APIConstants
     static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/"
     static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/"
 
+    static let POST_MEDIA_DATA = MA_API_BASE_HOST+"aemen/api/rest/new/assetupload/"
+
 //    static let UPDATE_USER_DETAILS = MA_API_BASE_HOST+"updateuser.php?"
 //    static let FORGOT_USER_PASSWORD = MA_API_BASE_HOST+"forgotpassword.php?phone="
     
