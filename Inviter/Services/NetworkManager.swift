@@ -84,30 +84,109 @@ class NetworkManager: NSObject
         })
     }
     
-    func uploadImage(_ imageData:NSData, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    func uploadImage(_ imgData:Data, header: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
-        Alamofire.upload(multipartFormData: <#T##(MultipartFormData) -> Void#>, with: <#T##URLRequestConvertible#>, encodingCompletion: <#T##((SessionManager.MultipartFormDataEncodingResult) -> Void)?##((SessionManager.MultipartFormDataEncodingResult) -> Void)?##(SessionManager.MultipartFormDataEncodingResult) -> Void#>)(multipartFormData: { (form) in
-            form.append(imageData, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
-        }, to: url, encodingCompletion: { result in
-            switch result {
-            case .success(let upload, _, _):
-                upload.responseString { response in
-                    print(response.value)
-                    withCompletionHandler(swiftyJsonVar)
-                }
-                withCompletionHandler(swiftyJsonVar)
-            case .failure(let encodingError):
-                print(encodingError)
-                withCompletionHandler(nil)
-            }
+        print(#function+"LINK:", url)
+        print(#function+"header::::", header)
+        
+        Alamofire.upload(multipartFormData:{ multipartFormData in
+            multipartFormData.append(imgData, withName: "file", mimeType: "image/png")},
+//                         usingThreshold:UInt64.init(),
+                         to:url,
+                         method:.post,
+                         headers:["Authorization": "auth_token"],
+                         encodingCompletion: { encodingResult in
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.uploadProgress(closure: { (progress) in
+                                    print("Upload Progress: \(progress.fractionCompleted)")
+                                })
+                                
+                                upload.responseJSON { response in
+                                    print("responseJSON:", response, response.result.value)
+                                }
+
+                            case .failure(let encodingError):
+                                print(encodingError)
+                            }
         })
+        
+//        Alamofire.upload(multipartFormData:{ multipartFormData in
+//            multipartFormData.append(imgData, withName: "file", mimeType: "image/png")},
+//                         usingThreshold:UInt64.init(),
+//                         to:url,
+//                         method:.post,
+//                         headers:header,
+//                         encodingCompletion: { encodingResult in
+//                            switch encodingResult {
+//                            case .success(let upload, _, _):
+//                                upload.uploadProgress(closure: { (progress) in
+//                                    print("Upload Progress: \(progress.fractionCompleted)")
+//                                })
+//
+//                                upload.responseJSON { response in
+//                                    print("responseJSON:", response, response.result.value)
+//                                }
+//                            case .failure(let encodingError):
+//                                print(encodingError)
+//                            }
+//        })
+        
+//        Alamofire.upload( multipartFormData: { (mFormData) in
+////            mFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
+//            mFormData.append(imgData, withName: "file", mimeType: "image/png")
+////            mFormData.append(imgData, withName: "file")
+////            for (key, value) in parameters {
+////                mFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+////            }
+//        }, to: url) { (result) in
+//
+//            switch result {
+//            case .success(let upload, _, _):
+//
+//                upload.uploadProgress(closure: { (progress) in
+//                    print("Upload Progress: \(progress.fractionCompleted)")
+//                })
+//
+//                upload.responseJSON { response in
+//                    print("responseJSON:", response, response.result.value)
+//                }
+//
+//            case .failure(let encodingError):
+//                print(encodingError)
+//            }
+//        }
+        
+//        Alamofire.upload(multipartFormData: { multipartFormData in
+//            multipartFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
+////            for (key, value) in parameters {
+////                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+////            } //Optional for extra parameters
+//        },
+//                         to:"mysite/upload.php")
+//        { (result) in
+//            switch result {
+//            case .success(let upload, _, _):
+//
+//                upload.uploadProgress(closure: { (progress) in
+//                    print("Upload Progress: \(progress.fractionCompleted)")
+//                })
+//
+//                upload.responseJSON { response in
+//                    print(response.result.value)
+//                }
+//
+//            case .failure(let encodingError):
+//                print(encodingError)
+//            }
+//        }
     }
     
     func createNewUser(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
         print(#function+"LINK:", APIConstants.CREATE_USER)
         print(#function+"parameters::::", parameters)
-
+        
         Alamofire.request( APIConstants.CREATE_USER , method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
 
             print(#function+"response ::::---  :", response)

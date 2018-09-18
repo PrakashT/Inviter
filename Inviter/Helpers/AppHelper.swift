@@ -45,7 +45,7 @@ class AppHelper:NSObject {
     
     func getUserAuthParameters() -> Dictionary<String, String>
     {
-        return ["Autherization": "Token "+UserDefaults.standard.value(forKey: "accessToken").debugDescription]
+        return ["Authorization": "Token 4CFxGuZ8IN6M250D"]//"Token "+UserDefaults.standard.value(forKey: "accessToken").debugDescription]
     }
     
     func appLogoColor() -> UIColor {

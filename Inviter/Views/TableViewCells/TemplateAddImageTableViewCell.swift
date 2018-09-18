@@ -122,22 +122,31 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
     
     func uploadImage(image: UIImage)
     {
-        var dic = AppHelper.Instance.getUserAuthParameters()
+        let header = AppHelper.Instance.getUserAuthParameters()
         let imgData = UIImageJPEGRepresentation(image, 0.2)!
         
-        let parameters = ["name": rename] //Optional for extra parameter
+//        let parameters = ["name": rename] //Optional for extra parameter
         
-       
+        NetworkManager.Instance.uploadImage(imgData, header: header, url: APIConstants.POST_MEDIA_DATA) { (result) in
+            
+        }
     }
     
     // MARK:- UIImagePickerController Delegates
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedAddImageButton?.contentMode = .center
-            selectedAddImageButton?.setImage(pickedImage, for: UIControlState.normal)
-        }
+        
         picker.dismiss(animated: true, completion: nil)
+
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            selectedAddImageButton?.contentMode = .center
+            selectedAddImageButton?.setImage(pickedImage, for: .normal)
+            
+            uploadImage(image: pickedImage)
+            
+//            let closeButton = selectedAddImageButton?.superview?.viewWithTag(11) as! UIButton
+//            closeButton.isHidden = false
+        }
     }
     
 }

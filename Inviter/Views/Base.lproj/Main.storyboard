@@ -290,7 +290,7 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1215" y="106"/>
+            <point key="canvasLocation" x="-1471" y="106"/>
         </scene>
         <!--Lets Go View Controller-->
         <scene sceneID="80a-nv-LXy">
@@ -416,7 +416,7 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vs9-FU-I2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-630" y="106"/>
+            <point key="canvasLocation" x="-730" y="106"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="aW2-sb-LoU">
@@ -593,7 +593,7 @@ to your loved ones</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6" y="122"/>
+            <point key="canvasLocation" x="4" y="106"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="cp8-F0-91p">
@@ -760,7 +760,7 @@ to your loved ones</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1431" y="-43"/>
+            <point key="canvasLocation" x="962" y="106"/>
         </scene>
         <!--Home-->
         <scene sceneID="9qg-2f-10F">
@@ -1318,7 +1318,7 @@ to your loved ones</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFN-gF-aNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682" y="-537"/>
+            <point key="canvasLocation" x="689" y="-671"/>
         </scene>
         <!--Template Title View Controller-->
         <scene sceneID="9hl-TD-0UT">
