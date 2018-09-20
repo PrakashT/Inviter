@@ -129,6 +129,10 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         
         NetworkManager.Instance.uploadImage(imgData, header: header, url: APIConstants.POST_MEDIA_DATA) { (result) in
             
+            for data in result.dictionary!
+            {
+                print("DATA", data.value)
+            }
         }
     }
     

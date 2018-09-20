@@ -90,11 +90,11 @@ class NetworkManager: NSObject
         print(#function+"header::::", header)
         
         Alamofire.upload(multipartFormData:{ multipartFormData in
-            multipartFormData.append(imgData, withName: "file", mimeType: "image/png")},
+            multipartFormData.append(imgData, withName: "file", fileName: "sample.png", mimeType: "image/png")},
 //                         usingThreshold:UInt64.init(),
                          to:url,
                          method:.post,
-                         headers:["Authorization": "auth_token"],
+                         headers:["Authorization": "Token 4CFxGuZ8IN6M250D"],
                          encodingCompletion: { encodingResult in
                             switch encodingResult {
                             case .success(let upload, _, _):
@@ -104,82 +104,24 @@ class NetworkManager: NSObject
                                 
                                 upload.responseJSON { response in
                                     print("responseJSON:", response, response.result.value)
+                                    switch response.result
+                                    {
+                                    case .success(let data):
+                                        let swiftyJsonVar = JSON(data)                                        
+                                        print(#function+"Success :")
+                                        withCompletionHandler(swiftyJsonVar)
+                                        
+                                    case .failure(let error):
+                                        print("Request failed with error: \(error) response:", response)
+                                        withCompletionHandler(nil)
+                                    }
                                 }
 
                             case .failure(let encodingError):
                                 print(encodingError)
+                                withCompletionHandler(nil)
                             }
         })
-        
-//        Alamofire.upload(multipartFormData:{ multipartFormData in
-//            multipartFormData.append(imgData, withName: "file", mimeType: "image/png")},
-//                         usingThreshold:UInt64.init(),
-//                         to:url,
-//                         method:.post,
-//                         headers:header,
-//                         encodingCompletion: { encodingResult in
-//                            switch encodingResult {
-//                            case .success(let upload, _, _):
-//                                upload.uploadProgress(closure: { (progress) in
-//                                    print("Upload Progress: \(progress.fractionCompleted)")
-//                                })
-//
-//                                upload.responseJSON { response in
-//                                    print("responseJSON:", response, response.result.value)
-//                                }
-//                            case .failure(let encodingError):
-//                                print(encodingError)
-//                            }
-//        })
-        
-//        Alamofire.upload( multipartFormData: { (mFormData) in
-////            mFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
-//            mFormData.append(imgData, withName: "file", mimeType: "image/png")
-////            mFormData.append(imgData, withName: "file")
-////            for (key, value) in parameters {
-////                mFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-////            }
-//        }, to: url) { (result) in
-//
-//            switch result {
-//            case .success(let upload, _, _):
-//
-//                upload.uploadProgress(closure: { (progress) in
-//                    print("Upload Progress: \(progress.fractionCompleted)")
-//                })
-//
-//                upload.responseJSON { response in
-//                    print("responseJSON:", response, response.result.value)
-//                }
-//
-//            case .failure(let encodingError):
-//                print(encodingError)
-//            }
-//        }
-        
-//        Alamofire.upload(multipartFormData: { multipartFormData in
-//            multipartFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
-////            for (key, value) in parameters {
-////                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-////            } //Optional for extra parameters
-//        },
-//                         to:"mysite/upload.php")
-//        { (result) in
-//            switch result {
-//            case .success(let upload, _, _):
-//
-//                upload.uploadProgress(closure: { (progress) in
-//                    print("Upload Progress: \(progress.fractionCompleted)")
-//                })
-//
-//                upload.responseJSON { response in
-//                    print(response.result.value)
-//                }
-//
-//            case .failure(let encodingError):
-//                print(encodingError)
-//            }
-//        }
     }
     
     func createNewUser(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
@@ -369,56 +311,6 @@ class NetworkManager: NSObject
         })
     }
     
-//    func forgotPassword(_ mailID: String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
-//    {
-//        print(#function+"LINK:", APIConstants.FORGOT_USER_PASSWORD+mailID)
-//        print(#function+"parameters::phoneNumber::", mailID)
-//
-//
-//        Alamofire.request( APIConstants.FORGOT_USER_PASSWORD+phoneNumber , method: encoding: JSONEncoding.default).responseJSON(completionHandler: { response -> Void in
-//
-//            print(#function+"response ::::---  :", response)
-//            switch response.result
-//            {
-//            case .success(let data):
-//                let swiftyJsonVar = JSON(data)
-//
-//                print(#function+"Success")
-//
-//                withCompletionHandler(swiftyJsonVar)
-//
-//            case .failure(let error):
-//                print("Request failed with error: \(error)")
-//                withCompletionHandler(nil)
-//            }
-//        })
-//    }
-    
-//    func updateUserDetails(_ parameters: String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
-//    {
-//        print(#function+"LINK:", APIConstants.UPDATE_USER_DETAILS+parameters)
-//        print(#function+"parameters::phoneNumber::", parameters)
-//
-//
-//        Alamofire.request( APIConstants.UPDATE_USER_DETAILS+parameters , method: .get, encoding: JSONEncoding.default).responseJSON(completionHandler: { response -> Void in
-//
-//            print(#function+"response ::::---  :", response)
-//            switch response.result
-//            {
-//            case .success(let data):
-//                let swiftyJsonVar = JSON(data)
-//
-//                print(#function+"Success")
-//
-//                withCompletionHandler(swiftyJsonVar)
-//
-//            case .failure(let error):
-//                print("Request failed with error: \(error)")
-//                withCompletionHandler(nil)
-//            }
-//        })
-//    }
-    
     func userLogin(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
         print(#function+"LINK:", APIConstants.CREATE_USER)
@@ -451,72 +343,4 @@ class NetworkManager: NSObject
             }
         })
     }
-//
-//    func getUserDeals(_ userId: String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
-//    {
-//        print(#function+"LINK: ", APIConstants.GET_USER_DETAILS)
-//        print(#function+"userId::::", userId)
-//
-//        Alamofire.request( APIConstants.GET_DEALS , method: encoding, JSONEncoding.default).responseJSON(completionHandler: { response -> Void in
-//
-//            print(#function+"response ::::---  :", response)
-//
-//            guard let arrayData = response.value else{
-//
-////                FirebaseCrashMessage("getUserDeals"+response.description)
-//                withCompletionHandler(nil)
-//
-//                return
-//            }
-//            switch response.result
-//            {
-//            case .success(let data):
-//                let swiftyJsonVar = JSON(data)
-//
-//                print(#function+"Success")
-//
-//                withCompletionHandler(swiftyJsonVar)
-//
-//            case .failure(let error):
-//                print("Request failed with error: \(error)")
-//                withCompletionHandler(nil)
-//            }
-//
-//
-//        })
-//    }
-    
-//    func downloadImageFromUrl(_ imageURL: String, downloadImageType: DownloadImageType , withCompletionHandler:@escaping (_ result:Data) -> Void)
-//    {
-//
-//        let link = imageURL//imagePathUrl+imageTitle
-//        print("LINK", link)
-//
-//        if let checkedUrl = URL(string: link)
-//        {
-//            getDataFromUrl(checkedUrl) { (data, response, error)  in
-//                guard let data = data, error == nil else { return }
-//                print(response?.suggestedFilename ?? checkedUrl.lastPathComponent)
-//                print("Download Finished")
-//                DispatchQueue.main.async() { () -> Void in
-//
-//                    if (data.count > 0)
-//                    {
-//                        withCompletionHandler(data)
-//                    }
-//                    else
-//                    {
-//                        withCompletionHandler(NSData() as Data)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    func getDataFromUrl(_ url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-//        URLSession.shared.dataTask(with: url) {
-//            (data, response, error) in
-//            completion(data, response, error)
-//            }.resume()
-//    }
 }

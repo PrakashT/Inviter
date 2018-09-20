@@ -32,6 +32,7 @@ class APIConstants
 
     static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/"
     static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/"
+    static let GET_TEMPLATEBYID = MA_API_BASE_HOST + "/aemen/api/rest/new/template/?id=1"
 
     static let POST_MEDIA_DATA = MA_API_BASE_HOST+"aemen/api/rest/new/assetupload/"
 

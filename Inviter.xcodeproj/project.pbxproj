@@ -60,6 +60,7 @@
 		A8D577CF212DE73300332803 /* InviterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577CE212DE73300332803 /* InviterUITests.swift */; };
 		A8D577E4212DE84300332803 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577E3212DE84300332803 /* Model.swift */; };
 		A8D577E6212DE86100332803 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577E5212DE86100332803 /* ViewModel.swift */; };
+		A8F77947215435CF00E97004 /* TemplateDefition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77946215435CF00E97004 /* TemplateDefition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		A8D577D0212DE73300332803 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8D577E3212DE84300332803 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A8D577E5212DE86100332803 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		A8F77946215435CF00E97004 /* TemplateDefition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateDefition.swift; sourceTree = "<group>"; };
 		B4F12E194CCE61E51E1D6106 /* Pods_InviterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InviterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FD0BFEC50B5D52EF15A8D1 /* Pods_Inviter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inviter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BDA1E09388ABC9F7FB4664 /* Pods-InviterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InviterTests/Pods-InviterTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				A8D577E3212DE84300332803 /* Model.swift */,
 				A888BB7E2132E6BD004C04A7 /* Categories.swift */,
 				A888BB8021331FB4004C04A7 /* Templates.swift */,
+				A8F77946215435CF00E97004 /* TemplateDefition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				A837CE1A213F090900F2C72E /* TemplateAddImageCollectionViewCell.swift in Sources */,
 				8EF663372136E9100085E02D /* TemplateVideoRenderingViewController.swift in Sources */,
 				A88B107F2131B61400F624DE /* MyVideosViewController.swift in Sources */,
+				A8F77947215435CF00E97004 /* TemplateDefition.swift in Sources */,
 				A8C2702F2130816A0015C4CD /* TemplateCollectionViewCell.swift in Sources */,
 				A8D577E6212DE86100332803 /* ViewModel.swift in Sources */,
 				A888BB7D2132D285004C04A7 /* LetsGoViewController.swift in Sources */,
