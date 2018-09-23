@@ -7,14 +7,29 @@
 //
 
 import UIKit
+import MBProgressHUD
+
+protocol TemplateAddImageTableViewCellDelegate:class {
+    
+    func didUpdateImageInfo(imageInfo:Image, s3Object:String)
+}
 
 class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TemplateAddImageCollectionViewCellDelegate {
 
+    weak var delegate:TemplateAddImageTableViewCellDelegate?
+    
     @IBOutlet weak var dottedBGView: UIView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
-    var selectedAddImageButton: UIButton?
-    var parentVC: TemplateEditViewController!
+    @IBOutlet weak var numberOfImagesLbl: UILabel!
     
+    var selectedAddImageInfo: Image?
+    var selectedImageBGView: UIView?
+    var selectedImageView: UIImageView?
+    var imagesListDic: [String:UIImage] = [:]
+
+    var parentVC: TemplateEditViewController!
+    private var imagesList = [Image]()
+    private var numberOfItems = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +47,14 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupViewData(imagesDatalist: [Image])
+    {
+        imagesList = imagesDatalist
+        numberOfImagesLbl.text = String(imagesList.count)+" images"
+        
+        imagesCollectionView.reloadData()
     }
     
     func setCollectionViewCellSize(collectionView: UICollectionView)
@@ -61,31 +84,42 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+         numberOfItems = (imagesList.count%2 == 0) ? imagesList.count/2 : (imagesList.count/2)+1
+        return numberOfItems
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TemplateAddImageCollectionViewCellID", for: indexPath) as! TemplateAddImageCollectionViewCell
         cell.delegate = self
+        
+        let imageInfo2 = (indexPath.item == numberOfItems-1) ? nil : imagesList[(indexPath.item*2)+1]
+        let imageInfo1 = imagesList[indexPath.item*2]
+        cell.setupViewData(imageInfo1: imageInfo1, imageInfo2: imageInfo2, imagesDic: imagesListDic)
+        
         return cell
-        }
-    
-    // MARK:- TemplateAddImageCollectionViewCellDelegate Methods
-    func addImageButton1Clicked(_ sender: UIButton) {
-        downloadSheet(sender: sender)
     }
     
-    func addImageButton2Clicked(_ sender: UIButton) {
-        downloadSheet(sender: sender)
+    // MARK:- TemplateAddImageCollectionViewCellDelegate Methods
+    
+    func addImageButtonClicked(_ imageBGView: UIView, imageView: UIImageView, imageInfo: Image) {
+        downloadSheet(imageBGView, imageView: imageView, imageInfo: imageInfo)
+    }
+    
+    func removeImageInfo(imageInfo: Image)
+    {
+        self.delegate?.didUpdateImageInfo(imageInfo: self.selectedAddImageInfo!, s3Object:"")
     }
     
     // MARK:- Add Image Related Methods
 
-    @IBAction func downloadSheet(sender: UIButton)
+    func downloadSheet(_ imageBGView: UIView, imageView: UIImageView, imageInfo: Image)
     {
-        selectedAddImageButton = sender
+        selectedImageBGView = imageBGView
+        selectedImageView = imageView
+        selectedAddImageInfo = imageInfo
         
         let alertController = UIAlertController(title: "Choose Option", message: "Please select option.", preferredStyle: UIAlertControllerStyle.actionSheet)
         alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
@@ -100,10 +134,10 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         self.parentVC.present(alertController, animated: true, completion: nil)
     }
     
-    func openCameraButton() {
-       
+    func openCameraButton()
+    {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            var imagePicker = UIImagePickerController()
+            let imagePicker = UIImagePickerController()
 //            imagePicker.delegate = self
             imagePicker.sourceType = .camera;
             imagePicker.allowsEditing = false
@@ -113,7 +147,7 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
     
     func openGallery()
     {
-        var imagePickerController = UIImagePickerController()
+        let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
         imagePickerController.allowsEditing = true
@@ -125,13 +159,20 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         let header = AppHelper.Instance.getUserAuthParameters()
         let imgData = UIImageJPEGRepresentation(image, 0.2)!
         
-//        let parameters = ["name": rename] //Optional for extra parameter
+        let progressHUD = MBProgressHUD.showAdded(to: parentVC.view, animated: true)
         
         NetworkManager.Instance.uploadImage(imgData, header: header, url: APIConstants.POST_MEDIA_DATA) { (result) in
-            
+            progressHUD.hide(animated: true)
+
             for data in result.dictionary!
             {
                 print("DATA", data.value)
+                
+//                let newImageInfo = Image(type: (self.selectedAddImageInfo?.type)!, inputType: (self.selectedAddImageInfo?.inputType)!, index: (self.selectedAddImageInfo?.index)!, s3Object:(data.value.rawValue as? String)! , fileLocation: (self.selectedAddImageInfo?.fileLocation)!, enableCropping: (self.selectedAddImageInfo?.enableCropping)!, croppingShape: ((self.selectedAddImageInfo?.croppingShape))!, viewportWidth: (self.selectedAddImageInfo?.viewportWidth)!, viewportHeight: (self.selectedAddImageInfo?.viewportHeight)!, boundaryWidth: (self.selectedAddImageInfo?.boundaryWidth)!, boundaryHeight: (self.selectedAddImageInfo?.boundaryHeight)!)
+//                self.selectedAddImageInfo?.s3Object = (data.value.rawValue as? String)!
+//                let newImageInfo = Image()
+//                newImageInfo.s3Object = (data.value.rawValue as? String)!
+                self.delegate?.didUpdateImageInfo(imageInfo: self.selectedAddImageInfo!, s3Object:(data.value.rawValue as? String)!)
             }
         }
     }
@@ -142,14 +183,14 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         
         picker.dismiss(animated: true, completion: nil)
 
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            selectedAddImageButton?.contentMode = .center
-            selectedAddImageButton?.setImage(pickedImage, for: .normal)
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
+            selectedImageBGView?.isHidden = false
+            selectedImageView?.image = pickedImage
+            
+            let key = selectedAddImageInfo?.index.description
+            imagesListDic[key!] = pickedImage
             uploadImage(image: pickedImage)
-            
-//            let closeButton = selectedAddImageButton?.superview?.viewWithTag(11) as! UIButton
-//            closeButton.isHidden = false
         }
     }
     

@@ -30,6 +30,11 @@ class TabBarController: UITabBarController
     
     func setTabbarItems(tabIndex:Int, selectedImage: String, unSelectedImage: String, Title: String)
     {
+        if ((self.tabBar.items?.count)! <= tabIndex)
+        {
+            return
+        }
+        
         let tabbarItem = (self.tabBar.items?[tabIndex])! as UITabBarItem
         tabbarItem.image = UIImage(named: unSelectedImage)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         tabbarItem.selectedImage = UIImage(named:selectedImage)?.withRenderingMode (UIImageRenderingMode.alwaysOriginal)

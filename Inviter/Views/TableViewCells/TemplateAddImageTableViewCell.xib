@@ -131,6 +131,7 @@
             <connections>
                 <outlet property="dottedBGView" destination="Npe-5Y-mo9" id="yl1-mu-TpX"/>
                 <outlet property="imagesCollectionView" destination="6pa-Ub-fTE" id="bD5-CC-KCe"/>
+                <outlet property="numberOfImagesLbl" destination="Ntk-hH-HC8" id="8x9-9Q-Whv"/>
             </connections>
             <point key="canvasLocation" x="129" y="193"/>
         </tableViewCell>

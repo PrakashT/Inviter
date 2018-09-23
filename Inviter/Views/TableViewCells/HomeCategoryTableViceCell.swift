@@ -12,13 +12,14 @@ enum HomeCollectionCellType {
     case Template
     case Catergory
 }
-class HomeCategoryTableViceCell: UITableViewCell, UICollectionViewDataSource
+class HomeCategoryTableViceCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate
 {
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     var homeCellType:HomeCollectionCellType!
     private var CategoriesList = [Category]()
     private var TemplatesList = [Template]()
-
+    var parentVC:HomeViewController?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -93,11 +94,11 @@ class HomeCategoryTableViceCell: UITableViewCell, UICollectionViewDataSource
         {
             switch homeCellType
             {
-            case .Template:
+            case .Template?:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TemplateCollectionViewCellID", for: indexPath as IndexPath) as! TemplateCollectionViewCell
                 cell.updateData(template: TemplatesList[indexPath.item])
                 return cell
-            case .Catergory:
+            case .Catergory?:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCellID", for: indexPath as IndexPath) as! CategoryCollectionViewCell
                 cell.updateData(category: CategoriesList[indexPath.item])
                 return cell
@@ -105,6 +106,27 @@ class HomeCategoryTableViceCell: UITableViewCell, UICollectionViewDataSource
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCellID", for: indexPath as IndexPath) as! CategoryCollectionViewCell
             cell.updateData(category: CategoriesList[indexPath.item])
             return cell
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        if indexPath.item != 3
+        {
+            switch homeCellType
+            {
+            case .Template?:                
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let vc = storyBoard.instantiateViewController(withIdentifier: "TemplateViewControllerID") as! TemplateViewController
+                vc.templateInfo = TemplatesList[indexPath.item]
+                parentVC?.navigationController?.pushViewController(vc, animated: true)
+                
+                break
+            case .Catergory?:
+                break
+            default: ()
+            break
             }
         }
     }

@@ -43,9 +43,11 @@ class LoginViewController: UIViewController {
                 if response["description"].description == "User sign in successfully done"
                 {
                     UserDefaults.standard.set(response["data"]["userID"].description, forKey: "userID")
+                    UserDefaults.standard.set(response["data"]["emailID"].description, forKey: "emailID")
+
                     UserDefaults.standard.synchronize()
                     
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "NavigationViewControllerID")
                     self.present(vc!, animated: true, completion: {})
                 }
                 else

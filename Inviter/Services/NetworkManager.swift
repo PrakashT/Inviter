@@ -51,22 +51,27 @@ class NetworkManager: NSObject
     }
     
     // MARK: User Creation / Updation / Check User n Email Existance / ChnagePassword / GetUserInfo APIs
-    func postRequestData(_ parameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    func postRequestData(_ parameters:  String, headerParameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
         print(#function+"LINK:", url)
         print(#function+"parameters::::", parameters)
+        print(#function+"headerParameters::::", headerParameters)
+//
+//             Alamofire.request( APIConstants.USER_LOGIN , method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
         
-        Alamofire.request(url, method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(headerParameters["Authorization"]!, forHTTPHeaderField: "Authorization")
+
+//        let pjson = attendences.toJSONString(prettyPrint: false)
+        let data = (parameters.data(using: .utf8))! as Data
+        
+        request.httpBody = data
+        
+        Alamofire.request(request).responseJSON { (response) in
             
-            print(#function+"response ::::---  :", response)
-            
-            guard let arrayData = response.value else{
-                
-                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
-                
-                return
-            }
+            print(response)
             
             switch response.result
             {
@@ -81,7 +86,36 @@ class NetworkManager: NSObject
                 print("Request failed with error: \(error) response:", response)
                 withCompletionHandler(nil)
             }
-        })
+
+            
+        }
+        
+//        Alamofire.request(url, method: .post, parameters:parameters ,encoding: URLEncoding.queryString, headers:Auth_header).responseJSON(completionHandler: { response -> Void in
+//
+//            print(#function+"response ::::---  :", response, "STATUS CODE:", response.response?.statusCode)
+//
+//            guard let arrayData = response.value else{
+//
+//                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
+//                withCompletionHandler(nil)
+//
+//                return
+//            }
+//
+//            switch response.result
+//            {
+//            case .success(let data):
+//                let swiftyJsonVar = JSON(data)
+//
+//                print(#function+"Success :")
+//
+//                withCompletionHandler(swiftyJsonVar)
+//
+//            case .failure(let error):
+//                print("Request failed with error: \(error) response:", response)
+//                withCompletionHandler(nil)
+//            }
+//        })
     }
     
     func uploadImage(_ imgData:Data, header: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
@@ -94,7 +128,7 @@ class NetworkManager: NSObject
 //                         usingThreshold:UInt64.init(),
                          to:url,
                          method:.post,
-                         headers:["Authorization": "Token 4CFxGuZ8IN6M250D"],
+                         headers:header, //["Authorization": "Token 4CFxGuZ8IN6M250D"],
                          encodingCompletion: { encodingResult in
                             switch encodingResult {
                             case .success(let upload, _, _):
@@ -313,7 +347,7 @@ class NetworkManager: NSObject
     
     func userLogin(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
-        print(#function+"LINK:", APIConstants.CREATE_USER)
+        print(#function+"LINK:", APIConstants.USER_LOGIN)
         print(#function+"parameters::::", parameters)
         
         Alamofire.request( APIConstants.USER_LOGIN , method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,30 +19,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Tx-vz-nXE">
-                                <rect key="frame" x="120" y="230" width="134.5" height="227.5"/>
+                                <rect key="frame" x="126" y="239.5" width="123" height="208"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash_Logo_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="tLj-CI-uIu">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="142.5"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Applogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLj-CI-uIu">
+                                        <rect key="frame" x="0.0" y="0.0" width="123" height="130"/>
                                         <color key="backgroundColor" red="0.86274509803921573" green="0.13333333333333333" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="tLj-CI-uIu" secondAttribute="height" multiplier="124:131" id="0gP-7j-ihC"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inviter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyx-iv-Qg8">
-                                        <rect key="frame" x="-10" y="157.5" width="124.5" height="46.5"/>
-                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="40"/>
+                                        <rect key="frame" x="0.0" y="150" width="123" height="45.5"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="39"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Dyx-iv-Qg8" firstAttribute="top" secondItem="tLj-CI-uIu" secondAttribute="bottom" constant="15" id="Aqn-ba-ulv"/>
-                                    <constraint firstItem="Dyx-iv-Qg8" firstAttribute="leading" secondItem="tLj-CI-uIu" secondAttribute="leading" constant="-10" id="CeA-pI-tol"/>
                                     <constraint firstItem="tLj-CI-uIu" firstAttribute="top" secondItem="4Tx-vz-nXE" secondAttribute="top" id="H6N-sH-nwg"/>
                                     <constraint firstItem="tLj-CI-uIu" firstAttribute="leading" secondItem="4Tx-vz-nXE" secondAttribute="leading" id="KF6-zN-dl8"/>
                                     <constraint firstAttribute="width" secondItem="4Tx-vz-nXE" secondAttribute="height" multiplier="134:227" id="Kd1-8U-qmC"/>
+                                    <constraint firstItem="Dyx-iv-Qg8" firstAttribute="top" secondItem="tLj-CI-uIu" secondAttribute="bottom" constant="20" id="TG4-nb-GQT"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dyx-iv-Qg8" secondAttribute="trailing" id="cb5-jw-cyv"/>
                                     <constraint firstAttribute="trailing" secondItem="tLj-CI-uIu" secondAttribute="trailing" id="g46-6J-NaF"/>
-                                    <constraint firstAttribute="trailing" secondItem="Dyx-iv-Qg8" secondAttribute="trailing" constant="20" id="uU1-yF-25Y"/>
+                                    <constraint firstItem="Dyx-iv-Qg8" firstAttribute="leading" secondItem="4Tx-vz-nXE" secondAttribute="leading" id="zwn-Gu-wQw"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -61,6 +60,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Splash_Logo_Icon" width="67" height="82"/>
+        <image name="Applogo" width="115" height="130"/>
     </resources>
 </document>

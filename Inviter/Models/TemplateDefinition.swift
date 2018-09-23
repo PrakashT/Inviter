@@ -10,14 +10,14 @@ import UIKit
 
 import Foundation
 
-struct Templates: Codable {
-    let resources: Resources
+struct TemplateDefinition: Codable {
+    var resources: Resources
 }
 
 struct Resources: Codable {
     let texts: [Text]
-    let images: [Image]
-    let videos: [JSONAny]
+    var images: [Image]
+//    let videos: [JSONAny]
     let audios: Audios
 }
 
@@ -36,7 +36,7 @@ struct Audios: Codable {
 struct Image: Codable {
     let type, inputType: String
     let index: Int
-    let s3Object, fileLocation: String
+    var s3Object, fileLocation: String
     let enableCropping: Bool
     let croppingShape, viewportWidth, viewportHeight, boundaryWidth: String
     let boundaryHeight: String
@@ -45,6 +45,11 @@ struct Image: Codable {
         case type, inputType, index
         case s3Object = "s3object"
         case fileLocation, enableCropping, croppingShape, viewportWidth, viewportHeight, boundaryWidth, boundaryHeight
+    }
+    
+    mutating func updateS3ObjectInfo(s3ObjectValue: String, fileLocationValue: String) {
+        s3Object = s3ObjectValue;
+        fileLocation = fileLocationValue
     }
 }
 

@@ -33,9 +33,10 @@ class APIConstants
     static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/"
     static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/"
     static let GET_TEMPLATEBYID = MA_API_BASE_HOST + "/aemen/api/rest/new/template/?id=1"
+    static let GET_CHECK_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/<uuid:taskid>/"
 
     static let POST_MEDIA_DATA = MA_API_BASE_HOST+"aemen/api/rest/new/assetupload/"
-
+     static let POST_START_RENDERER_PROCESS = MA_API_BASE_HOST+"aemen/api/render/initrender/"
 //    static let UPDATE_USER_DETAILS = MA_API_BASE_HOST+"updateuser.php?"
 //    static let FORGOT_USER_PASSWORD = MA_API_BASE_HOST+"forgotpassword.php?phone="
     
@@ -47,5 +48,9 @@ class APIConstants
     // MARK: API HOST Constants
     //    #if DEVELOPMENT
     static let MA_API_BASE_HOST = MA_BASE_URL //+ "api/v1/"
-    static let MA_BASE_URL = "http://testing.inviter.com/"   
+    static let MA_BASE_URL = "http://testing.inviter.com/"
+    static let S3_BASE_URL = "https://ets-videooutput-tst.s3.amazonaws.com/"
+    
+    //    #if PROD
+//    static let S3_BASE_URL = "https://d1bdry3axpowl5.cloudfront.net/";
 }

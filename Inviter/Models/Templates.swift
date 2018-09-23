@@ -16,9 +16,9 @@ import Foundation
 typealias Templates = [Template]
 
 struct Template: Codable {
-    let id, category: Int?
+    let id, category: String?
     let categoryName: CategoryName?
-    let type: TypeEnum?
+    let type: String?
     let price, priceInr, priceSar, code: String?
     let templateTitle, thumbnail, video, definition: String?
     let createdAt, updatedAt: String?
@@ -27,10 +27,11 @@ struct Template: Codable {
     enum CodingKeys: String, CodingKey {
         case id, category
         case categoryName = "category_name"
-        case type, price
+        case type  = "type"
+        case price = "price"
         case priceInr = "price_inr"
         case priceSar = "price_sar"
-        case code
+        case code = "code"
         case templateTitle = "template_title"
         case thumbnail, video, definition
         case createdAt = "created_at"

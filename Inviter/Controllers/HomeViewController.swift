@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var homeMenuButton: UIButton!
     
@@ -65,6 +65,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCategoryTableViceCellID", for: indexPath) as! HomeCategoryTableViceCell
         
         cell.homeCellType = (indexPath.section == 1) ? HomeCollectionCellType.Template : HomeCollectionCellType.Catergory
+        cell.parentVC = self
         if indexPath.section == 0
         {
             cell.updateCategoriesViewData(categories: self.CategoriesList_Generic) // This is for home showall data
@@ -111,6 +112,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) 
+    {
+    }
+        
     func setCollectionViewCellSize(collectionView: UICollectionView)
     {
         let cellWidth = (UIScreen.main.bounds.width-15-15-10)/2
@@ -177,7 +182,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for data in catResponse.array!
             {
-                let dic = Template(id: data["id"].int ?? 0, category: data["category"].int ?? 0, categoryName: CategoryName(rawValue: data["category_name"].description ), type: TypeEnum(rawValue: data["type"].description ), price: data["price"].description , priceInr: data["price_inr"].description ?? "", priceSar: data["price_sar"].description ?? "", code: data["type"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description ))
+                let dic = Template(id: data["id"].description , category: data["category"].description, categoryName: CategoryName(rawValue: data["category_name"].description ), type: data["type"].description.description, price: data["price"].description , priceInr: data["price_inr"].description , priceSar: data["price_sar"].description ?? "", code: data["code"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description ))
                 
                 self.TemplatesList.append(dic)
             }
