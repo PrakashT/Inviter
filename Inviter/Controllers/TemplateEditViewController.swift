@@ -15,15 +15,16 @@ enum InputType:Int {
     case TextFieldType = 2
 }
 
-class TemplateEditViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TemplateAddImageTableViewCellDelegate {
+class TemplateEditViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TemplateAddImageTableViewCellDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var templateTableView: UITableView!
     
     let sectionHeaderTitlesList: [String] = ["", "Music", "Edit Text", ""]
     private var templateDifinition : TemplateDefinition!
     var templateInfo : Template!
-    var mobileVideoID = ""
-    
+    var textFieldsDic = [String: UITextField]()
+    var nextTextField:UITextField?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +43,12 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         templateTableView.needsUpdateConstraints()
         
         setTemplateDetails()
+        setupKeyboardNotifications()
+    }
+    
+    func setupKeyboardNotifications()  {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -111,6 +118,18 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateTextFieldTableViewCellID", for: indexPath) as! TemplateTextFieldTableViewCell
             cell.textField.placeholder = templateDifinition.resources.texts[indexPath.row].value
+            cell.textField.delegate = self
+            cell.setTag(tag: indexPath.row)
+            
+            textFieldsDic[cell.textField.tag.description] = cell.textField
+            
+//            cell.nextTextField = { [weak self] (tag) in
+//                guard let strongSelf = self else{
+//                    return
+//                }
+//
+//                strongSelf.formTableView.nextResponder(index: tag)
+//            }
             return cell
         }
     }
@@ -149,47 +168,42 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
 //
 //    var resources:Resources
     
+    func checkAllTheRequiredData() -> Bool {
+        
+        var isAllImagesAdded = true
+        for imgInfo in templateDifinition.resources.images
+        {
+            if imgInfo.s3Object.count == 0
+            {
+                isAllImagesAdded = false
+                break
+            }
+        }
+        
+        var isAllTextsAdded = true
+        for textInfo in templateDifinition.resources.texts
+        {
+            if textInfo.value.count == 0
+            {
+                isAllTextsAdded = false
+                break
+            }
+        }
+
+        return isAllImagesAdded && isAllTextsAdded
+    }
+    
     func startRendererVideo(isFinalVideo: Bool)
     {
-        let userId = UserDefaults.standard.value(forKey: "userID") as! String
-        let emailId = UserDefaults.standard.value(forKey: "emailID") as! String
-
-        let rendererRequest = RendererRequest(categoryName:templateInfo.categoryName!, code:templateInfo.code!, duration:"", emailID:emailId, mobileVideoID: mobileVideoID, templateID: templateInfo.code!, template: templateInfo.id!, type:templateInfo.type!, userID:userId, resources: templateDifinition.resources)
-        
-        let jsonEncoder = JSONEncoder()
-        var parameters: Dictionary<String, Any>?
-        var jsonString = ""
-        do {
-            let jsonData = try jsonEncoder.encode(rendererRequest)
-            jsonString = String(data: jsonData, encoding: .utf8)!
-//            print(jsonString)
-//             jsonData = jsonString.data(using: .utf8, allowLossyConversion: false)!
-
-            //replacingOccurrences(of: "\", with: "", options: NSString.CompareOptions.literal, range: nil)
-
-            parameters = try (JSONSerialization.jsonObject(with: jsonData, options: []) as? Dictionary<String, Any>)!
-//            parameters = jsonString.convertToDictionary()
-        } catch let error as NSError {
-            print(error)
+        if !checkAllTheRequiredData()
+        {
+            AppHelper.Instance.ShowAlertView(title: "Inviter", message: "Please make sure you upload all the images and edit the text!", selfVC: self)
             return
         }
         
-//        let parameters = rendererRequest.dictionaryParameters
-        let urlOfRendrerType = isFinalVideo ?  APIConstants.POST_START_RENDERER_PROCESS_FINAL+"true" : APIConstants.POST_START_RENDERER_PROCESS
-        NetworkManager.Instance.postRequestData(jsonString, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: urlOfRendrerType) { (result) in
-            
-            print("assaSAs", result.dictionary)
-            for data in result.dictionary!
-            {
-                print("data", data)
-
-//                if let mblVideoId = data["mobileVideoID"]!.string
-//                {
-//                    self.mobileVideoID = mblVideoId
-//                }
-            }
-           
-        }
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TemplateRenderingDoneViewControllerID") as! TemplateRenderingDoneViewController
+        vc.startRendererVideo(isFinalVideo: true, templateDifinition: templateDifinition, templateDic: templateInfo)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func generatePreviewButtonClicked(sender: UIButton)
@@ -202,10 +216,67 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         startRendererVideo(isFinalVideo: true)
     }
     
+    @IBAction func tapGestureHandle(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func backButtonClicked(_ sender: Any)
     {
         self.navigationController?.isNavigationBarHidden = true
         navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Handle Keyboard Notify Methods
+    
+    @objc func keyboardWillShow(_ notification: NSNotification){
+        let userInfo = notification.userInfo ?? [:]
+        let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let height = keyboardFrame.height + 20
+        templateTableView.keyboardRaised(height: height)
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification){
+        templateTableView.keyboardClosed()
+    }
+    
+    // MARK: - UITextFields Delegate Methods
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        let nextTxtFieldTag = textField.tag+1
+        if nextTxtFieldTag < templateDifinition.resources.texts.count+100 && textFieldsDic[String(nextTxtFieldTag)] != nil // For comparing with actual index value adding constant number 100
+        {
+            nextTextField = textFieldsDic[String(nextTxtFieldTag)]
+            textField.returnKeyType = .next
+        }
+        else
+        {
+            nextTextField = nil
+            textField.returnKeyType = .done
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if let text = textField.text, let textRange = Range(range, in: text)
+        {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            templateDifinition.resources.texts[textField.tag-100].updateTextValue(text: updatedText)
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if nextTextField == nil
+        {
+            textField.resignFirstResponder()
+            return true
+        }
+        else
+        {
+            nextTextField?.becomeFirstResponder()
+            return false
+        }
     }
 }
 

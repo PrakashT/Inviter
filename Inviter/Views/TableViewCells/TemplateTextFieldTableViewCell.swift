@@ -11,6 +11,7 @@ import UIKit
 class TemplateTextFieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textField: UITextField!
+    var nextTextField:UITextField?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +24,18 @@ class TemplateTextFieldTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setTag(tag: Int){
+        textField.tag = 100+tag
+    }
+    
+}
+
+extension TemplateTextFieldTableViewCell: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if nextTextField?.tag == (textField.tag)
+        {
+            return textField.resignFirstResponder()
+        }
+        return false
+    }
 }

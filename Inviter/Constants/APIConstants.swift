@@ -36,6 +36,7 @@ class APIConstants
     static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/?country="+countryCode
     static let GET_TEMPLATEBYID = MA_API_BASE_HOST + "/aemen/api/rest/new/template/?id=1"
     static let GET_CHECK_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/<uuid:taskid>/"
+    static let GET_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/"
 
     static let POST_MEDIA_DATA = MA_API_BASE_HOST+"aemen/api/rest/new/assetupload/"
      static let POST_START_RENDERER_PROCESS = MA_API_BASE_HOST+"aemen/api/render/initrender/?final_video="

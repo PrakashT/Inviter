@@ -15,9 +15,9 @@ struct TemplateDefinition: Codable {
 }
 
 struct Resources: Codable {
-    let texts: [Text]
+    var texts: [Text]
     var images: [Image]
-//    let videos: [JSONAny]
+    let videos: [String]
     let audios: Audios
 }
 
@@ -57,12 +57,16 @@ struct Text: Codable {
     let type, inputType: InputTypeEnum
     let s3Object, fileLocation, key: String
     let maxLength: String?
-    let value: String
+    var value: String
     
     enum CodingKeys: String, CodingKey {
         case type, inputType, maxLength
         case s3Object = "s3object"
         case fileLocation, key, value
+    }
+    
+    mutating func updateTextValue(text: String) {
+        value = text;
     }
 }
 
