@@ -38,7 +38,9 @@ class APIConstants
     static let GET_CHECK_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/<uuid:taskid>/"
 
     static let POST_MEDIA_DATA = MA_API_BASE_HOST+"aemen/api/rest/new/assetupload/"
-     static let POST_START_RENDERER_PROCESS = MA_API_BASE_HOST+"aemen/api/render/initrender/"
+     static let POST_START_RENDERER_PROCESS = MA_API_BASE_HOST+"aemen/api/render/initrender/?final_video="
+    static let POST_START_RENDERER_PROCESS_FINAL = POST_START_RENDERER_PROCESS+"?final_video="
+
 //    static let UPDATE_USER_DETAILS = MA_API_BASE_HOST+"updateuser.php?"
 //    static let FORGOT_USER_PASSWORD = MA_API_BASE_HOST+"forgotpassword.php?phone="
     

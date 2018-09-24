@@ -22,7 +22,8 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
     let sectionHeaderTitlesList: [String] = ["", "Music", "Edit Text", ""]
     private var templateDifinition : TemplateDefinition!
     var templateInfo : Template!
-
+    var mobileVideoID = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,12 +140,21 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
+//    var template: String
+//    var type: String
+//    var userID: String
+//
+//    //    var videoID: String
+//    //    var templateLength: String
+//
+//    var resources:Resources
+    
     func startRendererVideo(isFinalVideo: Bool)
     {
         let userId = UserDefaults.standard.value(forKey: "userID") as! String
         let emailId = UserDefaults.standard.value(forKey: "emailID") as! String
 
-        let rendererRequest = RendererRequest(templateID: templateInfo.code!, userID:userId, emailID:emailId, template: templateInfo.id!, videoID: "", templateLength: "00:00:40", resources: templateDifinition.resources)
+        let rendererRequest = RendererRequest(categoryName:templateInfo.categoryName!, code:templateInfo.code!, duration:"", emailID:emailId, mobileVideoID: mobileVideoID, templateID: templateInfo.code!, template: templateInfo.id!, type:templateInfo.type!, userID:userId, resources: templateDifinition.resources)
         
         let jsonEncoder = JSONEncoder()
         var parameters: Dictionary<String, Any>?
@@ -165,9 +175,20 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         }
         
 //        let parameters = rendererRequest.dictionaryParameters
-        NetworkManager.Instance.postRequestData(jsonString, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: APIConstants.POST_START_RENDERER_PROCESS) { (result) in
+        let urlOfRendrerType = isFinalVideo ?  APIConstants.POST_START_RENDERER_PROCESS_FINAL+"true" : APIConstants.POST_START_RENDERER_PROCESS
+        NetworkManager.Instance.postRequestData(jsonString, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: urlOfRendrerType) { (result) in
             
-            print("assaSAs", result)
+            print("assaSAs", result.dictionary)
+            for data in result.dictionary!
+            {
+                print("data", data)
+
+//                if let mblVideoId = data["mobileVideoID"]!.string
+//                {
+//                    self.mobileVideoID = mblVideoId
+//                }
+            }
+           
         }
     }
     

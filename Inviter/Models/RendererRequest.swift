@@ -9,15 +9,21 @@
 import UIKit
 
 struct RendererRequest: Codable {
-    var templateID: String
-    var userID: String
+    var categoryName: String
+    var code: String
+    var duration: String
     var emailID: String
+    var mobileVideoID: String
+    var templateID: String
     var template: String
-    var videoID: String
-    var templateLength: String
+    var type: String
+    var userID: String
 
+//    var videoID: String
+//    var templateLength: String
+    
     var resources:Resources
     
-    var dictionaryParameters: [String: Any] { return ["templateID": templateID, "userID": userID, "emailID":emailID, "template": template, "videoID": videoID, "templateLength": templateLength,  "Resources": templateLength, "resources":resources] }
+    var dictionaryParameters: [String: Any] { return ["categoryName":categoryName, "code":code, "duration":duration, "emailID":emailID, "mobileVideoID": mobileVideoID, "templateID": templateID, "template": template, "type":type, "userID":userID, "Resources": resources] }
 
 }

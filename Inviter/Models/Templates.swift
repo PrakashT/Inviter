@@ -17,7 +17,7 @@ typealias Templates = [Template]
 
 struct Template: Codable {
     let id, category: String?
-    let categoryName: CategoryName?
+    let categoryName: String?
     let type: String?
     let price, priceInr, priceSar, code: String?
     let templateTitle, thumbnail, video, definition: String?

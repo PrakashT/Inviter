@@ -75,13 +75,11 @@ class TemplateViewController: UIViewController
             {
                 player?.play();
                 //            sender.setImage(UIImage.init(named: "play_whiteBig"), for: .normal)
-                playImageView.image = UIImage.init(named: "")
+                playImageView.image = nil
             }
             else
             {
                 playImageView.image = UIImage.init(named: "play_whiteBig")
-                
-                //            sender.setImage(UIImage.init(named: "play_whiteBig"), for: .normal)
                 player?.pause();
             }
             
