@@ -55,10 +55,12 @@ struct Image: Codable {
 
 struct Text: Codable {
     let type, inputType: InputTypeEnum
-    let s3Object, fileLocation, key, value: String
+    let s3Object, fileLocation, key: String
+    let maxLength: String?
+    let value: String
     
     enum CodingKeys: String, CodingKey {
-        case type, inputType
+        case type, inputType, maxLength
         case s3Object = "s3object"
         case fileLocation, key, value
     }
@@ -66,4 +68,6 @@ struct Text: Codable {
 
 enum InputTypeEnum: String, Codable {
     case text = "text"
+    case textArea = "textArea"
 }
+

@@ -32,14 +32,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romentic wedding fdf dffdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gS4-aE-3Og">
-                                        <rect key="frame" x="15" y="10" width="125" height="35"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romentic wedding fdf dffdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gS4-aE-3Og">
+                                        <rect key="frame" x="10" y="10" width="130" height="35"/>
                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_white" translatesAutoresizingMaskIntoConstraints="NO" id="MR9-0S-iZ0">
-                                        <rect key="frame" x="63" y="48" width="24" height="24"/>
+                                        <rect key="frame" x="63" y="53" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="MR9-0S-iZ0" secondAttribute="height" multiplier="1:1" id="w3C-kF-adD"/>
                                         </constraints>
@@ -55,10 +55,10 @@
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gS4-aE-3Og" secondAttribute="bottom" constant="10" id="eJm-Ms-FDS"/>
                                     <constraint firstAttribute="bottom" secondItem="PAB-I8-PIa" secondAttribute="bottom" id="g57-0h-jPT"/>
                                     <constraint firstItem="MR9-0S-iZ0" firstAttribute="centerX" secondItem="lRB-ZR-8wP" secondAttribute="centerX" id="hnB-el-g4a"/>
-                                    <constraint firstItem="gS4-aE-3Og" firstAttribute="leading" secondItem="lRB-ZR-8wP" secondAttribute="leading" constant="15" id="iGr-HD-WHU"/>
+                                    <constraint firstItem="gS4-aE-3Og" firstAttribute="leading" secondItem="lRB-ZR-8wP" secondAttribute="leading" constant="10" id="iGr-HD-WHU"/>
                                     <constraint firstItem="VcP-eZ-RhH" firstAttribute="height" secondItem="lRB-ZR-8wP" secondAttribute="height" id="kEX-bf-0U7"/>
                                     <constraint firstAttribute="trailing" secondItem="gS4-aE-3Og" secondAttribute="trailing" constant="10" id="mxF-hi-UcH"/>
-                                    <constraint firstItem="MR9-0S-iZ0" firstAttribute="centerY" secondItem="lRB-ZR-8wP" secondAttribute="centerY" id="scb-ON-6R9"/>
+                                    <constraint firstItem="MR9-0S-iZ0" firstAttribute="centerY" secondItem="lRB-ZR-8wP" secondAttribute="centerY" constant="5" id="scb-ON-6R9"/>
                                     <constraint firstItem="PAB-I8-PIa" firstAttribute="top" secondItem="lRB-ZR-8wP" secondAttribute="top" id="ulw-yX-cI3"/>
                                     <constraint firstItem="VcP-eZ-RhH" firstAttribute="centerY" secondItem="lRB-ZR-8wP" secondAttribute="centerY" id="vKD-a8-axf"/>
                                     <constraint firstItem="PAB-I8-PIa" firstAttribute="leading" secondItem="lRB-ZR-8wP" secondAttribute="leading" id="zLy-Sh-hmc"/>

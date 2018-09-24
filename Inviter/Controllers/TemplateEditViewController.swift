@@ -41,7 +41,6 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         templateTableView.needsUpdateConstraints()
         
         setTemplateDetails()
-        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -67,7 +66,7 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillDisappear(animated)
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -182,8 +181,10 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         startRendererVideo(isFinalVideo: true)
     }
     
-    @IBAction func backButtonClicked(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+    @IBAction func backButtonClicked(_ sender: Any)
+    {
+        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.popViewController(animated: true)
     }
 }
 

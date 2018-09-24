@@ -21,6 +21,8 @@ class APIConstants
     // MARK: Link URL Constants in You TAB
     
     // MARK: API Function Constants
+    static let countryCode = (NSLocale.current.regionCode == "US") ? "US" : "IN"
+
     static let CREATE_USER = MA_API_BASE_HOST+"app/signup"
     static let CHECK_MAIL = MA_API_BASE_HOST+"user/checkEmail/"
     static let USER_LOGIN = MA_API_BASE_HOST+"signin/doSignIn"
@@ -30,8 +32,8 @@ class APIConstants
     static let GET_CATEGORIES_GENERIC = GET_CATEGORIES+"?generic=generic"
     static let GET_CATEGORIES_SPECIFIC = GET_CATEGORIES+"?generic=specific"
 
-    static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/"
-    static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/"
+    static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/?country="+countryCode
+    static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/?country="+countryCode
     static let GET_TEMPLATEBYID = MA_API_BASE_HOST + "/aemen/api/rest/new/template/?id=1"
     static let GET_CHECK_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/<uuid:taskid>/"
 

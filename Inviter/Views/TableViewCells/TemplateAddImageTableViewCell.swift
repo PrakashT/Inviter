@@ -29,7 +29,6 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
 
     var parentVC: TemplateEditViewController!
     private var imagesList = [Image]()
-    private var numberOfItems = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -86,8 +85,8 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-         numberOfItems = (imagesList.count%2 == 0) ? imagesList.count/2 : (imagesList.count/2)+1
-        return numberOfItems
+        let numberOfItems = (imagesList.count%2 == 0) ? imagesList.count/2 : (imagesList.count/2)+1
+        return (imagesList.count > 0) ? numberOfItems : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -95,8 +94,9 @@ class TemplateAddImageTableViewCell: UITableViewCell, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TemplateAddImageCollectionViewCellID", for: indexPath) as! TemplateAddImageCollectionViewCell
         cell.delegate = self
         
-        let imageInfo2 = (indexPath.item == numberOfItems-1) ? nil : imagesList[(indexPath.item*2)+1]
-        let imageInfo1 = imagesList[indexPath.item*2]
+        let secondItemIndex = (indexPath.item*2)+1
+        let imageInfo2 = (secondItemIndex == imagesList.count) ? nil : imagesList[secondItemIndex]
+        let imageInfo1 = imagesList[secondItemIndex-1]
         cell.setupViewData(imageInfo1: imageInfo1, imageInfo2: imageInfo2, imagesDic: imagesListDic)
         
         return cell
