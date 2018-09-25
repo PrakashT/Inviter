@@ -20,6 +20,9 @@ class LoginViewController: UIViewController {
         logInButton.layer.borderColor = UIColor(red:0.82, green:0.15, blue:0.49, alpha:1).cgColor
         emailTextField.text = "manikanta.pt@gmail.com"
         passwordTextFiield.text = "mani123"
+        
+        var list = [String]()
+        var test = list[3]
     }
     
     override func viewWillAppear(_ animated: Bool) {

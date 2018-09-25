@@ -1046,6 +1046,7 @@ to your loved ones</string>
                                                 <rect key="frame" x="35" y="0.0" width="25" height="25"/>
                                                 <state key="normal" image="search_top_plane"/>
                                                 <connections>
+                                                    <action selector="sdsdsd:" destination="kas-y5-Chm" eventType="touchUpInside" id="mmB-BK-lkw"/>
                                                     <action selector="searchButtonClicked:" destination="4l6-iZ-S04" eventType="touchUpInside" id="hiD-iS-uKr"/>
                                                 </connections>
                                             </button>
@@ -1093,6 +1094,7 @@ to your loved ones</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBc-Km-rco" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kas-y5-Chm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3092" y="-226.23688155922042"/>
         </scene>
