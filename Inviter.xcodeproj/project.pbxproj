@@ -31,6 +31,7 @@
 		A8506849213AE80B0020DD19 /* TemplateEditMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8506847213AE80B0020DD19 /* TemplateEditMusicTableViewCell.swift */; };
 		A850684A213AE80B0020DD19 /* TemplateEditMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8506848213AE80B0020DD19 /* TemplateEditMusicTableViewCell.xib */; };
 		A883CF312156D8B400307ECD /* RendererRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A883CF302156D8B400307ECD /* RendererRequest.swift */; };
+		A88664A421596C3800AEDF97 /* UITableViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88664A321596C3800AEDF97 /* UITableViewExtention.swift */; };
 		A888BB7B2132CAD9004C04A7 /* AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888BB7A2132CAD9004C04A7 /* AppHelper.swift */; };
 		A888BB7D2132D285004C04A7 /* LetsGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888BB7C2132D285004C04A7 /* LetsGoViewController.swift */; };
 		A888BB7F2132E6BD004C04A7 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888BB7E2132E6BD004C04A7 /* Categories.swift */; };
@@ -111,6 +112,7 @@
 		A8506847213AE80B0020DD19 /* TemplateEditMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditMusicTableViewCell.swift; sourceTree = "<group>"; };
 		A8506848213AE80B0020DD19 /* TemplateEditMusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemplateEditMusicTableViewCell.xib; sourceTree = "<group>"; };
 		A883CF302156D8B400307ECD /* RendererRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererRequest.swift; sourceTree = "<group>"; };
+		A88664A321596C3800AEDF97 /* UITableViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtention.swift; sourceTree = "<group>"; };
 		A888BB7A2132CAD9004C04A7 /* AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHelper.swift; sourceTree = "<group>"; };
 		A888BB7C2132D285004C04A7 /* LetsGoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoViewController.swift; sourceTree = "<group>"; };
 		A888BB7E2132E6BD004C04A7 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				A8FDA7362155951E00471EE3 /* StringExtenstion.swift */,
+				A88664A321596C3800AEDF97 /* UITableViewExtention.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				A8506849213AE80B0020DD19 /* TemplateEditMusicTableViewCell.swift in Sources */,
 				A8D577E4212DE84300332803 /* Model.swift in Sources */,
 				A8A06C3A2132070400C5893C /* StringConstants.swift in Sources */,
+				A88664A421596C3800AEDF97 /* UITableViewExtention.swift in Sources */,
 				A8A06C3C2132070400C5893C /* HelpConstants.swift in Sources */,
 				A8506845213AE3550020DD19 /* TemplateTextFieldTableViewCell.swift in Sources */,
 				8EF663392136E9870085E02D /* TemplateRenderingDoneViewController.swift in Sources */,

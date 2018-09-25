@@ -74,7 +74,6 @@ class TemplateViewController: UIViewController
             if !sender.isSelected
             {
                 player?.play();
-                //            sender.setImage(UIImage.init(named: "play_whiteBig"), for: .normal)
                 playImageView.image = nil
             }
             else
@@ -82,7 +81,6 @@ class TemplateViewController: UIViewController
                 playImageView.image = UIImage.init(named: "play_whiteBig")
                 player?.pause();
             }
-            
             sender.isSelected = !sender.isSelected
         }
     }

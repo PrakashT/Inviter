@@ -1325,7 +1325,7 @@ to your loved ones</string>
         <!--Template Rendering Done View Controller-->
         <scene sceneID="9hl-TD-0UT">
             <objects>
-                <viewController storyboardIdentifier="TemplateRenderingDoneViewControllerID" id="4DL-Vw-6dO" customClass="TemplateRenderingDoneViewController" sceneMemberID="viewController">
+                <viewController id="4DL-Vw-6dO" customClass="TemplateRenderingDoneViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gOU-OT-I2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1517,9 +1517,11 @@ not more than 30 seconds</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1tT-jq-I3Z">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="dataSource" destination="WfZ-Up-YaK" id="YRe-FE-Ser"/>
                                     <outlet property="delegate" destination="WfZ-Up-YaK" id="QX9-yj-hJd"/>
+                                    <outletCollection property="gestureRecognizers" destination="bhW-8z-Vah" appends="YES" id="6Cf-4M-8lg"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -1544,6 +1546,11 @@ not more than 30 seconds</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1R-gT-zVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bhW-8z-Vah">
+                    <connections>
+                        <action selector="tapGestureHandle:" destination="WfZ-Up-YaK" id="6ON-tW-HCk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="550" y="943"/>
         </scene>
@@ -1711,10 +1718,10 @@ not more than 30 seconds</string>
             </objects>
             <point key="canvasLocation" x="1368.8" y="790.25487256371821"/>
         </scene>
-        <!--Template Title View Controller-->
+        <!--Template Rendering Done View Controller-->
         <scene sceneID="Ztl-3Y-d1H">
             <objects>
-                <viewController id="mss-kx-eEk" customClass="TemplateTitleViewController" customModule="Inviter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TemplateRenderingDoneViewControllerID" id="mss-kx-eEk" customClass="TemplateRenderingDoneViewController" customModule="Inviter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TsL-Xp-QTe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1738,7 +1745,7 @@ not more than 30 seconds</string>
                                             <color key="titleColor" red="0.43921568630000002" green="0.56862745100000001" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchButtonClicked:" destination="4l6-iZ-S04" eventType="touchUpInside" id="DWT-bA-6S6"/>
+                                            <action selector="editButtonnClicked:" destination="mss-kx-eEk" eventType="touchUpInside" id="MQT-zo-8Xp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1756,8 +1763,8 @@ not more than 30 seconds</string>
                                 <rect key="frame" x="0.0" y="95" width="375" height="572"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generating Preview..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qS8-AQ-Ajg">
-                                        <rect key="frame" x="73.5" y="50" width="228.5" height="25.5"/>
-                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="22"/>
+                                        <rect key="frame" x="87" y="50" width="201" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1765,25 +1772,54 @@ not more than 30 seconds</string>
                                         <rect key="frame" x="0.0" y="95" width="375" height="295"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKp-ZG-rgk">
-                                                <rect key="frame" x="15" y="225" width="345" height="51.5"/>
+                                                <rect key="frame" x="15" y="218" width="345" height="47"/>
                                                 <string key="text">Generating preview will take
 not more than 30 seconds</string>
-                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="21"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_Image_start" translatesAutoresizingMaskIntoConstraints="NO" id="iDF-0v-7NI">
-                                                <rect key="frame" x="15" y="20" width="345" height="200"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iDF-0v-7NI">
+                                                <rect key="frame" x="15" y="20" width="345" height="193"/>
                                             </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-Ab-k5G">
+                                                <rect key="frame" x="15" y="20" width="345" height="193"/>
+                                            </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z6e-iY-ECK">
+                                                <rect key="frame" x="167.5" y="96.5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Z6e-iY-ECK" secondAttribute="height" multiplier="1:1" id="AEj-SM-Aiy"/>
+                                                    <constraint firstAttribute="height" constant="40" id="hTA-Wl-k54"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iw4-mA-vES">
+                                                <rect key="frame" x="15" y="20" width="345" height="193"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="playVideoButtonClicked:" destination="mss-kx-eEk" eventType="touchUpInside" id="KbN-Wo-01k"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Iw4-mA-vES" firstAttribute="centerX" secondItem="4dc-Ab-k5G" secondAttribute="centerX" id="1Vq-Rh-j8T"/>
                                             <constraint firstItem="iDF-0v-7NI" firstAttribute="trailing" secondItem="oKp-ZG-rgk" secondAttribute="trailing" id="9AZ-Lm-FC6"/>
+                                            <constraint firstItem="Iw4-mA-vES" firstAttribute="width" secondItem="4dc-Ab-k5G" secondAttribute="width" id="HmM-aV-lYT"/>
+                                            <constraint firstItem="4dc-Ab-k5G" firstAttribute="centerY" secondItem="iDF-0v-7NI" secondAttribute="centerY" id="IGE-3k-6oQ"/>
+                                            <constraint firstItem="4dc-Ab-k5G" firstAttribute="height" secondItem="iDF-0v-7NI" secondAttribute="height" id="ORt-hb-ybV"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="oKp-ZG-rgk" secondAttribute="bottom" constant="30" id="R0Y-Yq-gcC"/>
+                                            <constraint firstItem="Iw4-mA-vES" firstAttribute="height" secondItem="4dc-Ab-k5G" secondAttribute="height" id="ZzW-jP-POs"/>
+                                            <constraint firstItem="4dc-Ab-k5G" firstAttribute="width" secondItem="iDF-0v-7NI" secondAttribute="width" id="agT-j4-pwJ"/>
                                             <constraint firstItem="oKp-ZG-rgk" firstAttribute="leading" secondItem="0g0-aT-Spf" secondAttribute="leading" constant="15" id="fYY-Hy-cpf"/>
+                                            <constraint firstItem="Z6e-iY-ECK" firstAttribute="centerY" secondItem="4dc-Ab-k5G" secondAttribute="centerY" id="fZJ-tu-SUi"/>
                                             <constraint firstItem="iDF-0v-7NI" firstAttribute="leading" secondItem="oKp-ZG-rgk" secondAttribute="leading" id="h0g-Q2-uv2"/>
                                             <constraint firstItem="iDF-0v-7NI" firstAttribute="top" secondItem="0g0-aT-Spf" secondAttribute="top" constant="20" id="lWc-Hv-2fE"/>
+                                            <constraint firstItem="4dc-Ab-k5G" firstAttribute="centerX" secondItem="iDF-0v-7NI" secondAttribute="centerX" id="myv-ZP-ZdB"/>
+                                            <constraint firstItem="Iw4-mA-vES" firstAttribute="centerY" secondItem="4dc-Ab-k5G" secondAttribute="centerY" id="s1a-dZ-Nyq"/>
                                             <constraint firstItem="oKp-ZG-rgk" firstAttribute="top" secondItem="iDF-0v-7NI" secondAttribute="bottom" constant="5" id="tkv-KX-upU"/>
+                                            <constraint firstItem="Z6e-iY-ECK" firstAttribute="centerX" secondItem="4dc-Ab-k5G" secondAttribute="centerX" id="wAt-hW-LoQ"/>
                                             <constraint firstAttribute="trailing" secondItem="oKp-ZG-rgk" secondAttribute="trailing" constant="15" id="zCQ-I7-Mwh"/>
                                         </constraints>
                                     </view>
@@ -1818,9 +1854,6 @@ not more than 30 seconds</string>
                                                     <color key="titleColor" red="0.84705882349999995" green="0.14117647059999999" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.BorderWidth">
                                                         <integer key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
@@ -1889,6 +1922,9 @@ not more than 30 seconds</string>
                     <connections>
                         <outlet property="continueBrowsingButton" destination="7Ek-Rt-nDw" id="Z1w-XD-7Gq"/>
                         <outlet property="notifyMeButton" destination="GEG-rH-RrD" id="bjx-GV-19R"/>
+                        <outlet property="playImageView" destination="Z6e-iY-ECK" id="jhH-zH-aaG"/>
+                        <outlet property="templateImageView" destination="iDF-0v-7NI" id="EvV-FO-eEw"/>
+                        <outlet property="viewPlay" destination="4dc-Ab-k5G" id="WzV-3Q-XLy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZ7-Rf-czh" userLabel="First Responder" sceneMemberID="firstResponder"/>

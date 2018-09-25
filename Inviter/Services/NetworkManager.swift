@@ -51,6 +51,39 @@ class NetworkManager: NSObject
     }
     
     // MARK: User Creation / Updation / Check User n Email Existance / ChnagePassword / GetUserInfo APIs
+    
+    func getRequestData(_ url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    {
+        print(#function+"LINK:", url)
+        
+        Alamofire.request( url , method: .get).responseJSON(completionHandler: { response -> Void in
+            
+            print(#function+"response ::::---  :", response)
+            
+            guard let arrayData = response.value else{
+                
+                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
+                withCompletionHandler(nil)
+                
+                return
+            }
+            
+            switch response.result
+            {
+            case .success(let data):
+                let swiftyJsonVar = JSON(data)
+                
+                print(#function+"Success :")
+                
+                withCompletionHandler(swiftyJsonVar)
+                
+            case .failure(let error):
+                print("Request failed with error: \(error) response:", response)
+                withCompletionHandler(nil)
+            }
+        })
+    }
+    
     func postRequestData(_ parameters:  String, headerParameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
         print(#function+"LINK:", url)
