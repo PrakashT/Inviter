@@ -32,7 +32,7 @@ class TemplateRenderingDoneViewController: UIViewController
         
         continueBrowsingButton.layer.cornerRadius = (continueBrowsingButton.frame.height)/2
         notifyMeButton.layer.cornerRadius = (notifyMeButton.frame.height)/2
-        
+        notifyMeButton.layer.borderColor = AppHelper.Instance.appLogoColor().cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {

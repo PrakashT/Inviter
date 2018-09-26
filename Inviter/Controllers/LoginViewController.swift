@@ -21,8 +21,6 @@ class LoginViewController: UIViewController {
         emailTextField.text = "manikanta.pt@gmail.com"
         passwordTextFiield.text = "mani123"
         
-        var list = [String]()
-        var test = list[3]
     }
     
     override func viewWillAppear(_ animated: Bool) {

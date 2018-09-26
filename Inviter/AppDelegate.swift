@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-         FirebaseApp.configure()
-//        FirebaseCrash.log("Testing Crash report - SQL database failed to initialize");
-
+        Fabric.with([Crashlytics.self])
+        FirebaseApp.configure()
+//      logUser()
         return true
     }
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        if let emailID = UserDefaults.standard.value(forKey: "emailID") as? String
+        {
+            Crashlytics.sharedInstance().setUserEmail(emailID)
+            Crashlytics.sharedInstance().setUserIdentifier(UserDefaults.standard.value(forKey: "userID") as? String)
+            Crashlytics.sharedInstance().setUserName("Test User")
+        }
+    }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
