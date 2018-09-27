@@ -457,7 +457,7 @@ to your loved ones</string>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-fJ-fOP">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLV-xw-dvB">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLV-xw-dvB" customClass="FBSDKLoginButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="170" height="50"/>
                                                         <color key="backgroundColor" red="0.18823529411764706" green="0.3411764705882353" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
@@ -563,7 +563,8 @@ to your loved ones</string>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="Sox-PE-dkm" id="CSr-5U-qww"/>
-                        <outlet property="logInButton" destination="TLx-FG-dch" id="opG-VA-cEY"/>
+                        <outlet property="logInButton" destination="TLx-FG-dch" id="HlE-gL-rb9"/>
+                        <outlet property="logInFBButton" destination="XLV-xw-dvB" id="i8h-B6-o45"/>
                         <outlet property="passwordTextFiield" destination="tla-3e-g3J" id="wBG-po-AeV"/>
                     </connections>
                 </viewController>
@@ -637,7 +638,7 @@ to your loved ones</string>
                                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="R6m-eg-pDv">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oES-Zw-zdq">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oES-Zw-zdq" customClass="FBSDKLoginButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="50"/>
                                                                 <color key="backgroundColor" red="0.18823529410000001" green="0.3411764706" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Log in with Facebook">
@@ -726,6 +727,7 @@ to your loved ones</string>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="E9g-51-12N" id="Yrc-wL-c7E"/>
+                        <outlet property="logInFBButton" destination="oES-Zw-zdq" id="z1D-hG-lz2"/>
                         <outlet property="nameTextField" destination="Y85-Ha-MuU" id="aCM-bB-XS5"/>
                         <outlet property="passwordTextFiield" destination="pog-wk-pG4" id="nNE-8Z-sey"/>
                         <outlet property="signUpButton" destination="THU-hY-bF8" id="ZxJ-bG-MNR"/>
@@ -1949,7 +1951,7 @@ not more than 30 seconds</string>
         <image name="search_top_plane" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="399-At-IOG"/>
-        <segue reference="dEz-jp-mjB"/>
+        <segue reference="vW6-Ty-t6d"/>
+        <segue reference="TmU-R9-Is5"/>
     </inferredMetricsTieBreakers>
 </document>
