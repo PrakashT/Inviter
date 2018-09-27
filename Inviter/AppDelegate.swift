@@ -140,9 +140,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("APNs token retrieved: \(deviceToken)")
         
         // With swizzling disabled you must set the APNs token here.
-         Messaging.messaging().apnsToken = deviceToken
+//         Messaging.messaging().apnsToken = deviceToken
 //        InstanceID.instanceID().setAPNSToken(deviceToken, type:)
-
+        UserDefaults.standard.set(deviceToken, forKey: "devicetoken")
+        UserDefaults.standard.synchronize()
     }
 }
 

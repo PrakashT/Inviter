@@ -152,7 +152,7 @@ class TemplateRenderingDoneViewController: UIViewController
         
         //        let parameters = rendererRequest.dictionaryParameters
         let urlOfRendrerType = isFinalVideo ?  APIConstants.POST_START_RENDERER_PROCESS_FINAL+"true" : APIConstants.POST_START_RENDERER_PROCESS
-        NetworkManager.Instance.postRequestData(jsonString, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: urlOfRendrerType) { (result) in
+        NetworkManager.Instance.postRequestWithRawValue(jsonString, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: urlOfRendrerType) { (result) in
             
             print("assaSAs", result.dictionary)
             for data in result.dictionary!

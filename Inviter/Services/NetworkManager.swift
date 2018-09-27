@@ -84,7 +84,73 @@ class NetworkManager: NSObject
         })
     }
     
-    func postRequestData(_ parameters:  String, headerParameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    func createNewUser(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    {
+        print(#function+"LINK:", APIConstants.CREATE_USER)
+        print(#function+"parameters::::", parameters)
+        
+        Alamofire.request( APIConstants.CREATE_USER , method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
+            
+            print(#function+"response ::::---  :", response)
+            
+            guard let arrayData = response.value else{
+                
+                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
+                withCompletionHandler(nil)
+                
+                return
+            }
+            
+            switch response.result
+            {
+            case .success(let data):
+                let swiftyJsonVar = JSON(data)
+                
+                print(#function+"Success :")
+                
+                withCompletionHandler(swiftyJsonVar)
+                
+            case .failure(let error):
+                print("Request failed with error: \(error) response:", response)
+                withCompletionHandler(nil)
+            }
+        })
+    }
+    
+    func postRequestWithFormData(_ parameters: Dictionary<String, String>, headerParameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    {
+        print(#function+"LINK:", url)
+        print(#function+"parameters::::", parameters)
+        
+        Alamofire.request( url , method: .post, parameters:parameters, encoding: URLEncoding.default, headers:headerParameters).responseJSON(completionHandler: { response -> Void in
+            
+            print(#function+"response ::::---  :", response)
+            
+            guard let arrayData = response.value else{
+                
+                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
+                withCompletionHandler(nil)
+                
+                return
+            }
+            
+            switch response.result
+            {
+            case .success(let data):
+                let swiftyJsonVar = JSON(data)
+                
+                print(#function+"Success :")
+                
+                withCompletionHandler(swiftyJsonVar)
+                
+            case .failure(let error):
+                print("Request failed with error: \(error) response:", response)
+                withCompletionHandler(nil)
+            }
+        })
+    }
+    
+    func postRequestWithRawValue(_ parameters:  String, headerParameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
         print(#function+"LINK:", url)
         print(#function+"parameters::::", parameters)
