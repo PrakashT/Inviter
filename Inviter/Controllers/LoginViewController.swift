@@ -43,6 +43,14 @@ class LoginViewController: UIViewController {
                 
                 if response["description"].description == "User sign in successfully done"
                 {
+                    let tokenParameters = [
+                        "token": UserDefaults.standard.value(forKey: "devicetoken")
+                        ]
+                    NetworkManager.Instance.postRequestWithFormData(tokenParameters as! Dictionary<String, String>, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: APIConstants.POST_CREATE_OR_UPDATE_DEVICE_TOKEN, withCompletionHandler: { (result) in
+                        
+                        
+                    })
+                    
                     UserDefaults.standard.set(response["data"]["userID"].description, forKey: "userID")
                     UserDefaults.standard.set(response["data"]["emailID"].description, forKey: "emailID")
 
