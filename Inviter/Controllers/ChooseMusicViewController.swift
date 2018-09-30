@@ -11,6 +11,7 @@ import Foundation
 class ChooseMusicViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var musicListTableView: UITableView!
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

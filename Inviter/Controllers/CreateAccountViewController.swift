@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import FBSDKLoginKit
 
 class CreateAccountViewController: UIViewController {
     
@@ -16,7 +17,8 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var signUpButton: UIButton!
-    
+    @IBOutlet weak var logInFBButton: FBSDKLoginButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,11 @@ class CreateAccountViewController: UIViewController {
 //            "userData": "{\"appType\":\"1\",\"authenticationType\":\"1\",\"timeZone\":\"-05:00_EST\",\"name\":\"1\",\"emailID\":\"rajesh1010@gmail.com\",\"password\":\"ddddd\"}",
 //            ]
         
+        if FBSDKAccessToken.currentAccessTokenIsActive()
+        {
+            // User is logged in, do work such as go to next view controller.
+        }
+        logInFBButton.readPermissions = ["public_profile", "email"]
     }
     
     override func viewWillAppear(_ animated: Bool) {

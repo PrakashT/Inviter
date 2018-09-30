@@ -1,8 +1,18 @@
 PODS:
   - Alamofire (4.7.3)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - Crashlytics (3.10.7):
     - Fabric (~> 1.7.11)
   - Fabric (1.7.11)
+  - FBSDKCoreKit (4.36.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.36.0):
+    - FBSDKCoreKit
   - Firebase/Core (5.8.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.1.4)
@@ -68,6 +78,7 @@ DEPENDENCIES:
   - Alamofire
   - Crashlytics
   - Fabric
+  - FBSDKLoginKit
   - Firebase/Core
   - Firebase/Messaging
   - MBProgressHUD
@@ -77,8 +88,11 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Bolts
     - Crashlytics
     - Fabric
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -94,8 +108,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
+  FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
   Firebase: a870ed114d769b424021a0c8ddb0c86c3250a0c5
   FirebaseAnalytics: 361594968a84a04d9598ef0f2e769d3735cd03de
   FirebaseCore: 27bd80e5bfaaf9552a1f5cacb4c7e8bb925bab22
@@ -109,6 +126,6 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 8a14545c6455f1cad831977f08174cd985541b30
+PODFILE CHECKSUM: da39bebd1190572e6f1c985392c847648123fa58
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.2
