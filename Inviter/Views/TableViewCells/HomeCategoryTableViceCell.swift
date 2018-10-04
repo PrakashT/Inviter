@@ -124,8 +124,34 @@ class HomeCategoryTableViceCell: UITableViewCell, UICollectionViewDataSource, UI
                 
                 break
             case .Catergory?:
+                
+                if let category = CategoriesList[indexPath.item] as? Category, category != nil, category.id != nil, category.id.description.count > 0
+                {
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let vc = storyBoard.instantiateViewController(withIdentifier: "CategoryDetailViewControllerID") as! CategoryDetailViewController
+                    vc.selectedCategory = category
+                    parentVC?.navigationController?.pushViewController(vc, animated: true)
+                }
+               
                 break
             default: ()
+            break
+            }
+        }
+        else
+        {
+            switch homeCellType
+            {
+            case .Template?:
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let vc = storyBoard.instantiateViewController(withIdentifier: "CategoryDetailViewControllerID") as! CategoryDetailViewController
+                vc.TemplatesList = templatesList
+                parentVC?.navigationController?.pushViewController(vc, animated: true)
+                break
+            case .Catergory?:
+               parentVC?.showAllCategories()
+                break
+            default:()
             break
             }
         }

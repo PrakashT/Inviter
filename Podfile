@@ -14,15 +14,24 @@ pod 'Fabric'
 pod 'Crashlytics'
 
 pod 'FBSDKLoginKit'
+#pod 'Facebook-iOS-SDK'
+pod 'FacebookCore'
+
+pod 'GoogleSignIn'
 
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for Inviter
 
-  target 'InviterTests' do
+  target 'Inviter Test' do
     inherit! :search_paths
     # Pods for testing
+  end
+  
+  target 'InviterTests' do
+      inherit! :search_paths
+      # Pods for testing
   end
 
   target 'InviterUITests' do

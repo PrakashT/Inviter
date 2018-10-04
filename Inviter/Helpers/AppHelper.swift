@@ -45,7 +45,8 @@ class AppHelper:NSObject {
     
     func getUserAuthParameters() -> Dictionary<String, String>
     {
-        return ["Authorization": "Token 4CFxGuZ8IN6M250D"]//"Token "+UserDefaults.standard.value(forKey: "accessToken").debugDescription]
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken") as! String
+        return ["Authorization": "Token "+accessToken]
     }
     
     func appLogoColor() -> UIColor {
@@ -71,5 +72,15 @@ class AppHelper:NSObject {
                                 CGPoint(x: 0, y: yourView.frame.height)])
         shapeLayer.path = path
         yourView.layer.addSublayer(shapeLayer)
+    }
+    
+    func secondsToTimestamp(intSeconds:Int)->String
+    {
+        let mins:Int = (intSeconds/60)%60
+        let hours:Int = intSeconds/3600
+        let secs:Int = intSeconds%60
+        
+        let strTimestamp:String =  ((hours>0) ? String(hours) + "h " : "") +  ((mins>0) ?  String(mins) + "m " : "") + String(secs) + "s"
+        return strTimestamp
     }
 }

@@ -52,18 +52,18 @@ class NetworkManager: NSObject
     
     // MARK: User Creation / Updation / Check User n Email Existance / ChnagePassword / GetUserInfo APIs
     
-    func getRequestData(_ url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+    func getRequestData(_ url:String, userAuthParameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
         print(#function+"LINK:", url)
         
-        Alamofire.request( url , method: .get).responseJSON(completionHandler: { response -> Void in
+        Alamofire.request( url , method: .get, encoding: URLEncoding.default, headers: userAuthParameters).responseJSON(completionHandler: { response -> Void in
             
-            print(#function+"response ::::---  :", response)
+            print(#function+"response ::::---  :", response, "userAuthParameters:-", userAuthParameters)
             
             guard let arrayData = response.value else{
                 
                 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
                 
                 return
             }
@@ -79,43 +79,43 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
     
-    func createNewUser(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
-    {
-        print(#function+"LINK:", APIConstants.CREATE_USER)
-        print(#function+"parameters::::", parameters)
-        
-        Alamofire.request( APIConstants.CREATE_USER , method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
-            
-            print(#function+"response ::::---  :", response)
-            
-            guard let arrayData = response.value else{
-                
-                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
-                
-                return
-            }
-            
-            switch response.result
-            {
-            case .success(let data):
-                let swiftyJsonVar = JSON(data)
-                
-                print(#function+"Success :")
-                
-                withCompletionHandler(swiftyJsonVar)
-                
-            case .failure(let error):
-                print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
-            }
-        })
-    }
+//    func createNewUser(_ parameters: Dictionary<String, String>, withCompletionHandler:@escaping (_ result:JSON) -> Void)
+//    {
+//        print(#function+"LINK:", APIConstants.CREATE_USER)
+//        print(#function+"parameters::::", parameters)
+//        
+//        Alamofire.request( APIConstants.CREATE_USER , method: .post, parameters:parameters, encoding: URLEncoding.default).responseJSON(completionHandler: { response -> Void in
+//            
+//            print(#function+"response ::::---  :", response)
+//            
+//            guard let arrayData = response.value else{
+//                
+//                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
+//                withCompletionHandler(JSON())
+//                
+//                return
+//            }
+//            
+//            switch response.result
+//            {
+//            case .success(let data):
+//                let swiftyJsonVar = JSON(data)
+//                
+//                print(#function+"Success :")
+//                
+//                withCompletionHandler(swiftyJsonVar)
+//                
+//            case .failure(let error):
+//                print("Request failed with error: \(error) response:", response)
+//                withCompletionHandler(JSON())
+//            }
+//        })
+//    }
     
     func postRequestWithFormData(_ parameters: Dictionary<String, String>, headerParameters: Dictionary<String, String>, url:String, withCompletionHandler:@escaping (_ result:JSON) -> Void)
     {
@@ -129,7 +129,7 @@ class NetworkManager: NSObject
             guard let arrayData = response.value else{
                 
                 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
                 
                 return
             }
@@ -145,7 +145,7 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
@@ -183,7 +183,7 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
 
             
@@ -196,7 +196,7 @@ class NetworkManager: NSObject
 //            guard let arrayData = response.value else{
 //
 //                //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-//                withCompletionHandler(nil)
+//                withCompletionHandler(JSON())
 //
 //                return
 //            }
@@ -212,7 +212,7 @@ class NetworkManager: NSObject
 //
 //            case .failure(let error):
 //                print("Request failed with error: \(error) response:", response)
-//                withCompletionHandler(nil)
+//                withCompletionHandler(JSON())
 //            }
 //        })
     }
@@ -246,13 +246,13 @@ class NetworkManager: NSObject
                                         
                                     case .failure(let error):
                                         print("Request failed with error: \(error) response:", response)
-                                        withCompletionHandler(nil)
+                                        withCompletionHandler(JSON())
                                     }
                                 }
 
                             case .failure(let encodingError):
                                 print(encodingError)
-                                withCompletionHandler(nil)
+                                withCompletionHandler(JSON())
                             }
         })
     }
@@ -269,7 +269,7 @@ class NetworkManager: NSObject
             guard let arrayData = response.value else{
 
 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
 
                 return
             }
@@ -285,7 +285,7 @@ class NetworkManager: NSObject
 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
@@ -324,7 +324,7 @@ class NetworkManager: NSObject
 //            guard let arrayData = response.value else{
 //
 ////                FirebaseCrashMessage("checkUserExistence"+response.description)
-//                withCompletionHandler(nil)
+//                withCompletionHandler(JSON())
 //
 //                return
 //            }
@@ -340,7 +340,7 @@ class NetworkManager: NSObject
 
             case .failure(let error):
                 print("Request failed with error: \(error)")
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
@@ -356,7 +356,7 @@ class NetworkManager: NSObject
             guard let arrayData = response.value else{
                 
                 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
                 
                 return
             }
@@ -372,7 +372,7 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
@@ -392,7 +392,7 @@ class NetworkManager: NSObject
             
             guard let arrayData = response.value else{
                 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
                 
                 return
             }
@@ -408,7 +408,7 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
@@ -423,7 +423,7 @@ class NetworkManager: NSObject
             
             guard let arrayData = response.value else{
                 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
                 
                 return
             }
@@ -439,7 +439,7 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }
@@ -456,7 +456,7 @@ class NetworkManager: NSObject
             guard let arrayData = response.value else{
                 
                 //                FirebaseCrashMessage("creatMA_BASE_URLMA_BASE_URLeNewUser"+response.description)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
                 
                 return
             }
@@ -472,7 +472,7 @@ class NetworkManager: NSObject
                 
             case .failure(let error):
                 print("Request failed with error: \(error) response:", response)
-                withCompletionHandler(nil)
+                withCompletionHandler(JSON())
             }
         })
     }

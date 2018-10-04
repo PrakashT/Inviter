@@ -8,51 +8,27 @@
 import UIKit
 import Foundation
 import FBSDKLoginKit
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var logInButton: UIButton!
-    @IBOutlet weak var logInFBButton: FBSDKLoginButton!
+    @IBOutlet weak var logInFBButton: UIButton!
     @IBOutlet weak var passwordTextFiield: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         logInButton.layer.borderColor = UIColor(red:0.82, green:0.15, blue:0.49, alpha:1).cgColor
         emailTextField.text = "manikanta.pt@gmail.com"
         passwordTextFiield.text = "mani123"
-        
-        if FBSDKAccessToken.currentAccessTokenIsActive()
-        {
-            // User is logged in, do work such as go to next view controller.
-        }
-        
-        // Extend the code sample from 6a. Add Facebook Login to Your Code
-        // Add to your viewDidLoad method:
-        logInFBButton.readPermissions = ["public_profile", "email"]
-        
-        var loginManager = FBSDKLoginManager()
-        loginManager.logIn(withReadPermissions: ["publish_actions"], from: self) { (result, error) in
-            if result!.declinedPermissions.contains("publish_actions")
-            {
-                
-            }
-            else
-            {
-                
-            }
-        }
-//        [loginManager logInWithPublishPermissions:@[@"publish_actions"]
-//        fromViewController:self
-//        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-//        if ([result.declinedPermissions containsObject:@”publish_actions”]) {
-//        // TODO: do not request permissions again immediately. Consider providing a NUX
-//        // describing  why the app want this permission.
-//        } else {
-//        // ...
+       
+//        if FBSDKAccessToken.currentAccessTokenIsActive()
+//        {
+//            // User is logged in, do work such as go to next view controller.
 //        }
-//        }];
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,5 +81,49 @@ class LoginViewController: UIViewController {
     
     @IBAction func tapGestureRecognizerHandle(_ sender: Any) {
         self.view.endEditing(true)
+    }
+    @IBAction func loginWithGoogleButtonClicked(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+
+    }
+    
+    @IBAction func loginWithFacebookButtonClicked(_ sender: Any) {
+        if FBSDKAccessToken.current() != nil {
+            FBSDKLoginManager().logOut()
+            return
+        }
+        
+        let loginManager = FBSDKLoginManager()
+        //            loginManager.logIn(withPublishPermissions:["email", "public_profile"], from: self){ result, error in
+        loginManager.logIn(withPublishPermissions: ["publish_actions"], from: self) { (result, error) in
+            if(error != nil){
+                FBSDKLoginManager().logOut()
+            }else if(result?.isCancelled ?? false){
+                FBSDKLoginManager().logOut()
+            }else{
+                //Handle login success
+                print("success Get user information.")
+                
+                let fbRequest = FBSDKGraphRequest(graphPath:"me", parameters: ["fields":"email", "fields2":"public_profile"]);
+                fbRequest?.start { (connection, result, error) -> Void in
+                    
+                    if error == nil {
+                        print("User Info :", result)
+                    } else {
+                        
+                        print("Error Getting Info \(error)");
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: GIDSignInUIDelegate Methods
+    
+    // Stop the UIActivityIndicatorView animation that was started when the user
+    // pressed the Sign In button
+    func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
+//        myActivityIndicator.stopAnimating()
     }
 }

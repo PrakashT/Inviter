@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCellID" rowHeight="51" id="KGk-i7-Jjw" customClass="SettingsTableViewCell" customModule="Inviter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mx0-Yz-utF">
+                        <rect key="frame" x="15" y="0.0" width="174" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="mOk-F8-NW0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCp-m3-4c7">
+                        <rect key="frame" x="199" y="1.5" width="106" height="37"/>
+                        <color key="backgroundColor" red="0.89411764709999997" green="0.13725490200000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="zCp-m3-4c7" secondAttribute="height" multiplier="43:15" id="QG8-5E-v43"/>
+                            <constraint firstAttribute="height" constant="37" id="bTa-Nc-R70"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
+                        <state key="normal" title="Edit">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="18.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Cu-wi-2Mm">
+                        <rect key="frame" x="0.0" y="53" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Emv-EW-QJm"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4Cu-wi-2Mm" firstAttribute="top" secondItem="Mx0-Yz-utF" secondAttribute="bottom" constant="13" id="2up-hR-5O6"/>
+                    <constraint firstItem="zCp-m3-4c7" firstAttribute="leading" secondItem="Mx0-Yz-utF" secondAttribute="trailing" constant="10" id="KKk-Kn-K7Z"/>
+                    <constraint firstItem="Mx0-Yz-utF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SUD-LE-VVt"/>
+                    <constraint firstAttribute="trailing" secondItem="zCp-m3-4c7" secondAttribute="trailing" constant="15" id="URD-HH-9Wn"/>
+                    <constraint firstAttribute="trailing" secondItem="4Cu-wi-2Mm" secondAttribute="trailing" id="X3i-Yu-TnK"/>
+                    <constraint firstItem="Mx0-Yz-utF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="cuA-MY-6yp"/>
+                    <constraint firstItem="4Cu-wi-2Mm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sw1-4Z-4NS"/>
+                    <constraint firstAttribute="bottom" secondItem="Mx0-Yz-utF" secondAttribute="bottom" id="tFj-uC-yP8"/>
+                    <constraint firstItem="zCp-m3-4c7" firstAttribute="centerY" secondItem="Mx0-Yz-utF" secondAttribute="centerY" id="xBA-2u-43g"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="InfoLbl" destination="Mx0-Yz-utF" id="6cX-fR-IWL"/>
+                <outlet property="editButton" destination="zCp-m3-4c7" id="Qxs-CR-39J"/>
+                <outlet property="separatorLineView" destination="4Cu-wi-2Mm" id="ez5-qA-OC6"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="157.87106446776613"/>
+        </tableViewCell>
+    </objects>
+</document>

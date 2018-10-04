@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>787030016917-dsv3dnlc53rh7i632kd7n08hml2udqua.apps.googleusercontent.com</string>
+	<string>787030016917-74051lbuucu2gm3b6a5ama0vurvn7q8n.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.787030016917-dsv3dnlc53rh7i632kd7n08hml2udqua</string>
+	<string>com.googleusercontent.apps.787030016917-74051lbuucu2gm3b6a5ama0vurvn7q8n</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBys_2I3nwKnQ6v69KPnmYfN4MGobPWUho</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,23 +17,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.inviter.testing</string>
+	<string>com.inviter</string>
 	<key>PROJECT_ID</key>
 	<string>inviter-mobile-app</string>
 	<key>STORAGE_BUCKET</key>
 	<string>inviter-mobile-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:787030016917:ios:e837ae1d3417fa4b</string>
+	<string>1:787030016917:ios:04165fb0d454069c</string>
 	<key>DATABASE_URL</key>
 	<string>https://inviter-mobile-app.firebaseio.com</string>
 </dict>

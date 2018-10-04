@@ -16,17 +16,19 @@ import Foundation
 typealias Templates = [Template]
 
 struct Template: Codable {
-    let id, category: String?
+    let id,status,draft_status,category: String?
+    let duration: String?
     let categoryName: String?
     let type: String?
     let price, priceInr, priceSar, code: String?
-    let templateTitle, thumbnail, video, definition: String?
+    var templateTitle, thumbnail, video, definition: String?
     let createdAt, updatedAt: String?
     let baseURL: BaseURL?
     
     enum CodingKeys: String, CodingKey {
-        case id, category
+        case id, category,draft_status,status
         case categoryName = "category_name"
+        case duration = "duration"
         case type  = "type"
         case price = "price"
         case priceInr = "price_inr"
@@ -37,6 +39,15 @@ struct Template: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case baseURL = "base_url"
+    }
+    
+    mutating func updateVideoInfo(videoValue: String) {
+        video = videoValue
+    }
+    
+    mutating func updateThumbnailInfo(thumbnailValue: String)
+    {
+        thumbnail = thumbnailValue
     }
 }
 

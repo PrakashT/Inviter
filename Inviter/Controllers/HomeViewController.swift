@@ -114,6 +114,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) 
     {
+        var tempCatList = (collectionView == specificCategoryCollectionVw) ? CategoriesList_Specific : CategoriesList_Generic
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "CategoryDetailViewControllerID") as! CategoryDetailViewController
+        vc.selectedCategory = tempCatList[indexPath.item]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
         
     func setCollectionViewCellSize(collectionView: UICollectionView)
@@ -182,7 +187,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for data in catResponse.array!
             {
-                let dic = Template(id: data["id"].description , category: data["category"].description, categoryName: data["category_name"].description, type: data["type"].description.description, price: data["price"].description , priceInr: data["price_inr"].description , priceSar: data["price_sar"].description ?? "", code: data["code"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description ))
+                let dic = Template(id: data["id"].description , status: data["status"].description, draft_status: data["draft_status"].description, category: data["category"].description,  duration: data["duration"].description, categoryName: data["category_name"].description, type: data["type"].description.description, price: data["price"].description , priceInr: data["price_inr"].description , priceSar: data["price_sar"].description ?? "", code: data["code"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description ))
                 
                 self.TemplatesList.append(dic)
             }
@@ -199,6 +204,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if response["description"].description == "Data retrieved successfully"
             {
                 UserDefaults.standard.set(response["data"]["userAPIKeys"]["accessToken"].description, forKey: "accessToken") //Bool
+                
+                let lastName = response["data"]["userProfile"]["lastName"].description
+                let firstName = response["data"]["userProfile"]["firstName"].description
+
+                let name = firstName + (lastName.count > 0 ? " "+lastName : "")
+                UserDefaults.standard.set(name, forKey: "UserName") //Bool
+                
                 UserDefaults.standard.synchronize()
 
                 self.getCategoriesList(categoryType: .Generic)
@@ -215,9 +227,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func homeButtonClicked(_ sender: UIButton)
     {
-        homeMenuButton.isSelected = !(sender.tag == 1)
-        titleLabel.text = (sender.tag == 1) ? "Templates" : "Categories"
-        categoryView.isHidden = (sender.tag == 1)
-        sender.tag = (sender.tag == 1) ? 2 : 1
+       showAllCategories()
+    }
+    
+    func showAllCategories()
+    {
+        homeMenuButton.isSelected = !(homeMenuButton.tag == 1)
+        titleLabel.text = (homeMenuButton.tag == 1) ? "Templates" : "Categories"
+        categoryView.isHidden = (homeMenuButton.tag == 1)
+        homeMenuButton.tag = (homeMenuButton.tag == 1) ? 2 : 1
     }
 }

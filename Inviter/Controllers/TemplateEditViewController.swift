@@ -104,7 +104,10 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateAddImageTableViewCellID", for: indexPath) as! TemplateAddImageTableViewCell
             cell.parentVC = self
-            cell.setupViewData(imagesDatalist: (templateDifinition.resources.images))
+            if templateDifinition.resources.images != nil
+            {
+                cell.setupViewData(imagesDatalist: (templateDifinition.resources.images))
+            }
             cell.delegate = self
             return cell
         case 1:

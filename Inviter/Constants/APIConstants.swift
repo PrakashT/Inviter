@@ -32,8 +32,10 @@ class APIConstants
     static let GET_CATEGORIES_GENERIC = GET_CATEGORIES+"?generic=generic"
     static let GET_CATEGORIES_SPECIFIC = GET_CATEGORIES+"?generic=specific"
 
+    static let GET_TEMPLATES_BY_CATEGORY = MA_API_BASE_HOST+"/aemen/api/rest/new/template/?country="+countryCode+"&category="
     static let GET_TEMPLATES = MA_API_BASE_HOST+"aemen/api/rest/new/template/?country="+countryCode
-    static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/?country="+countryCode
+    static let GET_MYVIDEOS = MA_API_BASE_HOST+"aemen/api/rest/new/myvideos/"
+    
     static let GET_TEMPLATEBYID = MA_API_BASE_HOST + "/aemen/api/rest/new/template/?id=1"
     static let GET_CHECK_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/<uuid:taskid>/"
     static let GET_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/"

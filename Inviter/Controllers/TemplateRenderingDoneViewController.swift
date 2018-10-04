@@ -21,6 +21,9 @@ class TemplateRenderingDoneViewController: UIViewController
 //    @IBOutlet weak var templateTitleLbl: UILabel!
     @IBOutlet weak var viewPlay: UIView!
     @IBOutlet weak var playImageView: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var subTitleLbl: UILabel!
     
     var player : AVPlayer?
     var renderedVideoDic = [String: String]()
@@ -31,8 +34,9 @@ class TemplateRenderingDoneViewController: UIViewController
         super.viewDidLoad()
         
         continueBrowsingButton.layer.cornerRadius = (continueBrowsingButton.frame.height)/2
+        continueBrowsingButton.layer.borderColor = AppHelper.Instance.appLogoColor().cgColor
+
         notifyMeButton.layer.cornerRadius = (notifyMeButton.frame.height)/2
-        notifyMeButton.layer.borderColor = AppHelper.Instance.appLogoColor().cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +62,10 @@ class TemplateRenderingDoneViewController: UIViewController
     func updateVideoData()  {
         if(templateInfo != nil && templateInfo.thumbnail != "Empty" && (templateInfo.thumbnail?.count ?? 0) > 5)
         {
+            editButton.titleLabel?.text = "Done"
+            subTitleLbl.text = "Ready!"
+            subTitleLbl.textColor = UIColor.yellow
+            
             templateImageView.sd_setImage(with: URL(string: templateInfo.thumbnail ?? ""), completed: { (image, err, type, url) in
                 //                self.activityIndicator.stopAnimating()
             })
@@ -65,8 +73,16 @@ class TemplateRenderingDoneViewController: UIViewController
         }
     }
     
-    @IBAction func editButtonnClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func editButtonnClicked(_ sender: Any)
+    {
+        if editButton.titleLabel?.text == "Done"
+        {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        else
+        {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func playVideoButtonClicked(_ sender: UIButton) {
@@ -103,30 +119,33 @@ class TemplateRenderingDoneViewController: UIViewController
     
     func checkVideoRenderingDone()
     {
-        NetworkManager.Instance.getRequestData(APIConstants.GET_RENDERER_STATUS+(renderedVideoDic["taskid"]?.description)!
+        NetworkManager.Instance.getRequestData(APIConstants.GET_RENDERER_STATUS+(renderedVideoDic["taskid"]?.description)!, userAuthParameters: Dictionary<String, String>()
 ) { (result) in
             
             print("assaSAs", result.dictionary)
-            for data in result.dictionary!
-            {
-                print("data", data)
-               if data.key == "status" && data.value == "SUCCESS"
-               {
-                MBProgressHUD.hide(for: self.viewPlay, animated: true)
+    print("assaSAs", result.dictionary?["status"] ?? "EMPTY ")
+    print("assaSAs", result.dictionary?["status"] ?? "EMPTY ")
 
-                self.updateVideoData()
-                self.timer.invalidate()
-                }
-                //                if let mblVideoId = data["mobileVideoID"]!.string
-                //                {
-                //                    self.mobileVideoID = mblVideoId
-                //                }
-            }
+    if result.dictionary?["status"] == "SUCCESS"
+    {
+        self.timer.invalidate()
+
+        let dic = result.dictionary?["output"]?.dictionary
+        print("assaSAs", self.templateInfo, dic , dic?["outputvideo"], dic?["thumb"])
+        
+        self.templateInfo.updateVideoInfo(videoValue: APIConstants.S3_BASE_URL + (dic?["outputvideo"]!.description ?? ""))
+        self.templateInfo.updateThumbnailInfo(thumbnailValue: APIConstants.S3_BASE_URL + (dic!["thumb"]!.description ?? ""))
+        
+        self.updateVideoData()
+        MBProgressHUD.hide(for: self.viewPlay, animated: true)
+    }
         }
     }
     
     func startRendererVideo(isFinalVideo: Bool, templateDifinition : TemplateDefinition, templateDic : Template)
     {
+        titleLbl.text = isFinalVideo ? "Render" : "Preview"
+        templateInfo = templateDic
         let userId = UserDefaults.standard.value(forKey: "userID") as! String
         let emailId = UserDefaults.standard.value(forKey: "emailID") as! String
         
@@ -162,7 +181,7 @@ class TemplateRenderingDoneViewController: UIViewController
 
                 if (data.key == "taskid")
                 {
-                    self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) {
+                    self.timer = Timer.scheduledTimer(withTimeInterval: 9, repeats: true) {
                         (_) in
                         self.checkVideoRenderingDone()
                     }

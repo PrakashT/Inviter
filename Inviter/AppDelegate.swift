@@ -12,10 +12,11 @@ import Fabric
 import Crashlytics
 import UserNotifications
 import FBSDKCoreKit
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
 
@@ -53,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
 //                self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+                UserDefaults.standard.set(result.token, forKey: "devicetoken")
+                UserDefaults.standard.synchronize()
             }
         }
         
@@ -61,6 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [END register_for_notifications]
 
 //      logUser()
+        
+        #if DEVELOPMENT
+        GIDSignIn.sharedInstance().clientID = "787030016917-dsv3dnlc53rh7i632kd7n08hml2udqua.apps.googleusercontent.com"
+        #else
+        GIDSignIn.sharedInstance().clientID = "787030016917-74051lbuucu2gm3b6a5ama0vurvn7q8n.apps.googleusercontent.com"
+        #endif
+        
+        GIDSignIn.sharedInstance().delegate = self
+
         return true
     }
     
@@ -75,15 +87,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-//
-//        let handled = FBSDKApplicationDelegate.sharedInstance().application(app,
-//                                                                            open: url,
-//                                                                            sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?,
-//                                                                            annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-//
-//        return handled
-//    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        let annotation = options[UIApplicationOpenURLOptionsKey.annotation]
+        if (FBSDKApplicationDelegate.sharedInstance().application(app,
+                                                                  open: url,
+                                                                  sourceApplication: sourceApplication,
+                                                                  annotation: annotation)) {
+            return true
+        }else if(GIDSignIn.sharedInstance().handle(url,
+                                                      sourceApplication: sourceApplication,
+                                                      annotation: annotation)){
+            return true
+        }
+        
+        return false
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -101,6 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -157,6 +178,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(deviceToken, forKey: "devicetoken")
         UserDefaults.standard.synchronize()
     }
+    
+    // MARK: GIDSignInDelegate Methods
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            // ...
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
 }
 
 // [START ios_10_message_handling]
@@ -207,6 +252,8 @@ extension AppDelegate : MessagingDelegate {
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        UserDefaults.standard.set(fcmToken, forKey: "devicetoken")
+        UserDefaults.standard.synchronize()
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
@@ -219,5 +266,6 @@ extension AppDelegate : MessagingDelegate {
     }
     // [END ios_10_data_message]
 
+   
 }
 

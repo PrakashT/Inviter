@@ -9,36 +9,34 @@
 import UIKit
 import Foundation
 import FBSDKLoginKit
+import GoogleSignIn
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var passwordTextFiield: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var logInFBButton: FBSDKLoginButton!
-
+    @IBOutlet weak var logInFBButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         signUpButton.layer.borderColor = UIColor(red:0.82, green:0.15, blue:0.49, alpha:1).cgColor
         
-        let parameters = [
-            "emailID": "ravikant.software@gmail.com",
-            ]
-        NetworkManager.Instance.checkUserExistence(parameters) { (response) in
-        }
-        
-//        let parameters2 = [
-//            "userData": "{\"appType\":\"1\",\"authenticationType\":\"1\",\"timeZone\":\"-05:00_EST\",\"name\":\"1\",\"emailID\":\"rajesh1010@gmail.com\",\"password\":\"ddddd\"}",
+//        let parameters = [
+//            "emailID": "ravikant.software@gmail.com",
 //            ]
-        
+//        NetworkManager.Instance.checkUserExistence(parameters) { (response) in
+//
+//        }
+
         if FBSDKAccessToken.currentAccessTokenIsActive()
         {
             // User is logged in, do work such as go to next view controller.
         }
-        logInFBButton.readPermissions = ["public_profile", "email"]
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +44,7 @@ class CreateAccountViewController: UIViewController {
         
         nameTextField.becomeFirstResponder()
     }
-   
+    
     @IBAction func signUpButtonClicked(_ sender: Any) {
         if AppHelper.Instance.isValidEmail(testStr: emailTextField.text!) && (passwordTextFiield.text?.count)! > 2 && (nameTextField.text?.count)! > 2
         {
@@ -85,7 +83,43 @@ class CreateAccountViewController: UIViewController {
     
     @IBAction func tapGestureRecognizerHandle(_ sender: Any) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func loginWithGoogleButtonClicked(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction func loginWithFacebookButtonClicked(_ sender: Any) {
+        if FBSDKAccessToken.current() != nil {
+            FBSDKLoginManager().logOut()
+            return
+        }
         
+        let loginManager = FBSDKLoginManager()
+        //            loginManager.logIn(withPublishPermissions:["email", "public_profile"], from: self){ result, error in
+        loginManager.logIn(withPublishPermissions: ["publish_actions"], from: self) { (result, error) in
+            if(error != nil){
+                FBSDKLoginManager().logOut()
+            }else if(result?.isCancelled ?? false){
+                FBSDKLoginManager().logOut()
+            }else{
+                //Handle login success
+                print("success Get user information.")
+                
+                let fbRequest = FBSDKGraphRequest(graphPath:"me", parameters: ["fields":"email", "fields2":"public_profile"]);
+                fbRequest?.start { (connection, result, error) -> Void in
+                    
+                    if error == nil {
+                        print("User Info :", result)
+                    } else {
+                        
+                        print("Error Getting Info \(error)");
+                        
+                    }
+                }
+            }
+        }
     }
     
 }
+
