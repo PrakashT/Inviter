@@ -23,7 +23,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // Do any additional setup after loading the view.
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-        versionLbl.text = "Version " + appVersion
+        let appBuildVersion = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        versionLbl.text = "Version " + appBuildVersion
     }
     
     // MARK: - UITableViewDataSources

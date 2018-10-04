@@ -196,6 +196,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
+    func updateOrCreateUserToken() {
+        let tokenParameters = [
+            "token": UserDefaults.standard.value(forKey: "devicetoken")
+        ]
+        NetworkManager.Instance.postRequestWithFormData(tokenParameters as! Dictionary<String, String>, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: APIConstants.POST_CREATE_OR_UPDATE_DEVICE_TOKEN, withCompletionHandler: { (result) in
+            
+        })
+    }
+    
     func getUserData()
      {
         NetworkManager.Instance.getUserDetails(UserDefaults.standard.value(forKey: "userID") as! String) { (response) in
@@ -213,6 +222,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 UserDefaults.standard.synchronize()
 
+                self.updateOrCreateUserToken()
+                
                 self.getCategoriesList(categoryType: .Generic)
                 self.getCategoriesList(categoryType: .Specific)
 

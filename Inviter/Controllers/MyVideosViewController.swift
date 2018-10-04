@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MBProgressHUD
 
 class MyVideosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MyVideosTableViewCellDelegate
 {
@@ -51,6 +52,8 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
     
     fileprivate func getMyVideosList()
     {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
         NetworkManager.Instance.getRequestData(APIConstants.GET_MYVIDEOS, userAuthParameters: AppHelper.Instance.getUserAuthParameters(), withCompletionHandler: { (response) in
             
             print("RESTTTTTT: getMyVideosList "+response.description)
@@ -63,18 +66,54 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
             }
          
             self.myVideosTableView.reloadData()
-            
+            MBProgressHUD.hide(for: self.view, animated: true)
         })
     }
     
     // MARK:- MyVideosTableViewCellDelegate Methods
     
     func didDeleteVideoButtonClicked(cell: MyVideosTableViewCell) {
-    
+        if let videoID = cell.templateInfo.id, videoID.count > 0
+        {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            NetworkManager.Instance.postRequestWithFormData(Dictionary<String, String>(), headerParameters: AppHelper.Instance.getUserAuthParameters(), url: APIConstants.POST_DELETE_MyVIDEOS+videoID, withCompletionHandler: { (result) in
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+
+                let filteredDetails = self.TemplatesList.filter { !$0.id!.contains(videoID) }
+                self.TemplatesList = filteredDetails
+                
+                self.myVideosTableView.reloadData()
+
+            })
+        }
+       
     }
     
-    func didShareButtonClicked(cell: MyVideosTableViewCell) {
+//    enum StatusType {
+//        case DraftInprogressType
+//        case DraftSuccessType
+//        case FinalInprogressType
+//        case FinalSuccessType
+//        case DraftOrFinalFailedType
+//    }
     
+    func didShareButtonClicked(cell: MyVideosTableViewCell) {
+      
+        switch cell.statusType {
+        case .DraftSuccessType? , .DraftOrFinalFailedType?: // EDIT
+            editThisTemplateButtonClicked(templateInfo: cell.templateInfo)
+            break
+        case .FinalSuccessDownloadType?: // DOWNLOAD
+            displayShareSheet(localVideoPath: cell.templateInfo.video ?? "")
+            break
+        case .FinalSuccessShareType?: // SHARE
+            displayShareSheet(localVideoPath: cell.templateInfo.video ?? "")
+            break
+        default:
+            break
+        }
     }
     
     func didVideoImageButtonClicked(cell: MyVideosTableViewCell) {
@@ -88,4 +127,28 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    // MARK:-  Status Type Operations
+    
+    func editThisTemplateButtonClicked(templateInfo: Template)
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "TemplateEditViewControllerID") as! TemplateEditViewController
+        vc.templateInfo = templateInfo
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func displayShareSheet(localVideoPath:String) {
+
+        let videoURL = URL(fileURLWithPath: localVideoPath)
+        
+        let activityItems: [Any] = [videoURL, "Check this out!"]
+        let activityController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        activityController.popoverPresentationController?.sourceView = view
+        activityController.popoverPresentationController?.sourceRect = view.frame
+        
+        self.present(activityController, animated: true, completion: nil)
+    }
+    
 }

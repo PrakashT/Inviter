@@ -1,33 +1,34 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '11.0'
 
+use_frameworks!
+
+def shared
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
+    pod 'SDWebImage'
+    pod 'MBProgressHUD'
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
+    
+    pod 'Fabric'
+    pod 'Crashlytics'
+    
+    pod 'FBSDKLoginKit'
+    #pod 'Facebook-iOS-SDK'
+    pod 'FacebookCore'
+    
+    pod 'GoogleSignIn'
+end
+
 target 'Inviter' do
-pod 'Alamofire'
-pod 'SwiftyJSON'
-pod 'SDWebImage'
-pod 'MBProgressHUD'
+    shared
+end
 
-pod 'Firebase/Core'
-pod 'Firebase/Messaging'
-
-pod 'Fabric'
-pod 'Crashlytics'
-
-pod 'FBSDKLoginKit'
-#pod 'Facebook-iOS-SDK'
-pod 'FacebookCore'
-
-pod 'GoogleSignIn'
-
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Inviter
-
-  target 'Inviter Test' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+target 'Inviter Test' do
+    shared
+end
   
   target 'InviterTests' do
       inherit! :search_paths
@@ -39,4 +40,3 @@ pod 'GoogleSignIn'
     # Pods for testing
   end
 
-end

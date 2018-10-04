@@ -42,7 +42,6 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         templateTableView.estimatedRowHeight = 55.0
         templateTableView.needsUpdateConstraints()
         
-        setTemplateDetails()
         setupKeyboardNotifications()
     }
     
@@ -69,6 +68,8 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setTemplateDetails()
         
         self.navigationController?.isNavigationBarHidden = false
     }

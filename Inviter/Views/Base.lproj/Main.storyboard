@@ -1005,7 +1005,7 @@ to your loved ones</string>
                                     <constraint firstAttribute="height" constant="34" id="a7i-Op-Q1j"/>
                                     <constraint firstAttribute="width" constant="88" id="apz-ET-PqG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
                                 <state key="normal" title="Log Out">
                                     <color key="titleColor" red="0.84705882349999995" green="0.14117647059999999" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
