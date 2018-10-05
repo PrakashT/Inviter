@@ -10,8 +10,9 @@ import UIKit
 import Foundation
 import FBSDKLoginKit
 import GoogleSignIn
+import MBProgressHUD
 
-class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
+class CreateAccountViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var passwordTextFiield: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -24,7 +25,8 @@ class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         signUpButton.layer.borderColor = UIColor(red:0.82, green:0.15, blue:0.49, alpha:1).cgColor
-        
+        signUpButton.layer.cornerRadius = signUpButton.frame.height/2.0
+
 //        let parameters = [
 //            "emailID": "ravikant.software@gmail.com",
 //            ]
@@ -46,8 +48,11 @@ class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func signUpButtonClicked(_ sender: Any) {
+        
         if AppHelper.Instance.isValidEmail(testStr: emailTextField.text!) && (passwordTextFiield.text?.count)! > 2 && (nameTextField.text?.count)! > 2
         {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
             let parametersDic = [
                 "appType": "1",
                 "authenticationType": "1",
@@ -61,6 +66,8 @@ class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
             NetworkManager.Instance.createNewUser(parameters) { (response) in
                 print("RESTTTTTT: "+response["description"].description)
                 
+                MBProgressHUD.hide(for: self.view, animated: true)
+
                 if response["description"].description == "User registration successfully done"
                 {
                     EventsLogHelper.Instance.logRegistrationEvent(userId: response["data"]["userID"].description, emailId: self.emailTextField.text!, signUpMethod: "Login", country: "", city: "")
@@ -125,5 +132,35 @@ class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    // MARK:- UITextField Delegates
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        if textField == passwordTextFiield
+        {
+            textField.returnKeyType = .done
+        }
+        else
+        {
+            textField.returnKeyType = .next
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == nameTextField
+        {
+            emailTextField.becomeFirstResponder()
+        }
+        else if textField == emailTextField
+        {
+            passwordTextFiield.becomeFirstResponder()
+        }
+        else
+        {
+            passwordTextFiield.resignFirstResponder()
+        }
+        return true
+    }
 }
 

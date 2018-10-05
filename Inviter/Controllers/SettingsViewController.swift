@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var settingsTableView: UITableView!
     
     @IBOutlet weak var versionLbl: UILabel!
-    var appInfoList = ["About Us", "Terms of Service", "Privacy Policy"]
+    var appInfoList:[String: String] = ["About Us":APIConstants.ABOUT_US_LINK, "Terms of Service":APIConstants.TERMS_AND_SERVICES_LINK, "Privacy Policy":APIConstants.PRIVACY_POLICY_LINK]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +47,14 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         else
         {
-            cell.InfoLbl.text = appInfoList[indexPath.row]
+            cell.InfoLbl.text = Array(appInfoList.keys)[indexPath.row]
             cell.editButton.isHidden = true
             
             cell.separatorLineView.isHidden = !(indexPath.row == appInfoList.count-1)
         }
         
-        
+        cell.selectionStyle = .none
+
         return cell
     }
     
@@ -72,8 +73,26 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 1
+        {
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "WebViewControllerID") as! WebViewController
+            vc.webURL = Array(appInfoList.values)[indexPath.row]
+            vc.webViewTitle = Array(appInfoList.keys)[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
     @IBAction func logOutButtonClicked(_ sender: Any) {
         
+        UserDefaults.standard.removeObject(forKey: "userID")
+        UserDefaults.standard.synchronize()
+        
+        self.tabBarController?.dismiss(animated: true, completion: {
+            
+        })
     }
 }

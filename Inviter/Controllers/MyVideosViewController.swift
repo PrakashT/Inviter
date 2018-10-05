@@ -13,12 +13,21 @@ import MBProgressHUD
 class MyVideosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MyVideosTableViewCellDelegate
 {
     
+    @IBOutlet weak var noVideosView: UIView!
+    @IBOutlet weak var broseTemplatesButton: UIButton!
+    
     @IBOutlet weak var myVideosTableView: UITableView!
     private var TemplatesList = [Template]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         myVideosTableView.register(UINib.init(nibName: "MyVideosTableViewCell", bundle: nil), forCellReuseIdentifier: "MyVideosTableViewCellID")
+        
+        broseTemplatesButton.layer.borderWidth = 2.0
+        broseTemplatesButton.layer.borderColor = AppHelper.Instance.appLogoColor().cgColor
+        broseTemplatesButton.layer.cornerRadius = broseTemplatesButton.frame.height/2.0
+        
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -52,22 +61,32 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
     
     fileprivate func getMyVideosList()
     {
+        noVideosView.isHidden = true;
+        
         MBProgressHUD.showAdded(to: self.view, animated: true)
 
         NetworkManager.Instance.getRequestData(APIConstants.GET_MYVIDEOS, userAuthParameters: AppHelper.Instance.getUserAuthParameters(), withCompletionHandler: { (response) in
-            
+            if let responseArray = response.array
+           {
+            self.noVideosView.isHidden = (responseArray.count > 0);
+
             self.TemplatesList.removeAll()
             
             print("RESTTTTTT: getMyVideosList "+response.description)
-            
-            for data in response.array!
+
+            for data in responseArray
             {
                 let dic = Template(id: data["id"].description, status: data["status"].description, draft_status: data["draft_status"].description, category: data["category"].description,  duration: data["duration"].description, categoryName: data["category_name"].description, type: data["type"].description.description, price: data["price"].description , priceInr: data["price_inr"].description , priceSar: data["price_sar"].description , code: data["code"].description ?? "", templateTitle: data["template_title"].description ?? "", thumbnail: data["thumbnail"].description ?? "", video: data["video"].description ?? "", definition: data["definition"].description ?? "", createdAt: data["created_at"].description ?? "", updatedAt: data["updated_at"].description ?? "", baseURL: BaseURL(rawValue: data["base_url"].description ))
                 
                 self.TemplatesList.append(dic)
             }
-         
-            self.myVideosTableView.reloadData()
+                self.myVideosTableView.reloadData()
+            }
+            else
+            {
+                self.noVideosView.isHidden = false
+            }
+           
             MBProgressHUD.hide(for: self.view, animated: true)
         })
     }
@@ -158,6 +177,11 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
         activityController.popoverPresentationController?.sourceRect = view.frame
         
         self.present(activityController, animated: true, completion: nil)
+    }
+    
+    @IBAction func browseTemplatesButtonClicked(_ sender: Any)
+    {
+        self.tabBarController?.selectedIndex = 0
     }
     
 }

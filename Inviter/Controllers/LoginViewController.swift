@@ -9,8 +9,9 @@ import UIKit
 import Foundation
 import FBSDKLoginKit
 import GoogleSignIn
+import MBProgressHUD
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var logInFBButton: UIButton!
@@ -21,6 +22,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         logInButton.layer.borderColor = UIColor(red:0.82, green:0.15, blue:0.49, alpha:1).cgColor
+        logInButton.layer.cornerRadius = logInButton.frame.height/2.0
 //        emailTextField.text = "manikanta.pt@gmail.com"
 //        passwordTextFiield.text = "mani123"
        
@@ -41,6 +43,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         if AppHelper.Instance.isValidEmail(testStr: emailTextField.text!) && (passwordTextFiield.text?.count)! > 2
         {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
             let parameters = [
                 "emailID": emailTextField.text!,
                 "password": passwordTextFiield.text!,
@@ -48,7 +52,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             
             NetworkManager.Instance.userLogin(parameters) { (response) in
                 print("RESTTTTTT: "+response["description"].description)
-                
+               
+                MBProgressHUD.hide(for: self.view, animated: true)
+
                 if response["description"].description == "User sign in successfully done"
                 {
                     EventsLogHelper.Instance.logRegistrationEvent(userId: response["data"]["userID"].description, emailId: response["data"]["emailID"].description, signUpMethod: "Login", country: "", city: "")
@@ -119,5 +125,33 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     // pressed the Sign In button
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error?) {
 //        myActivityIndicator.stopAnimating()
+    }
+    
+    // MARK:- UITextField Delegates
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        if textField == emailTextField
+        {
+            textField.returnKeyType = .next
+        }
+        else
+        {
+            textField.returnKeyType = .done
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+       if textField == emailTextField
+        {
+            passwordTextFiield.becomeFirstResponder()
+            return true
+        }
+        else
+        {
+            passwordTextFiield.resignFirstResponder()
+            return false
+        }
     }
 }

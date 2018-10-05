@@ -89,6 +89,8 @@
 		A81795D0212F4C040018D00E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81795CF212F4C040018D00E /* HomeViewController.swift */; };
 		A837CE1A213F090900F2C72E /* TemplateAddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A837CE18213F090900F2C72E /* TemplateAddImageCollectionViewCell.swift */; };
 		A837CE1B213F090900F2C72E /* TemplateAddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A837CE19213F090900F2C72E /* TemplateAddImageCollectionViewCell.xib */; };
+		A83C56E32167DCCE0082B97A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83C56E22167DCCE0082B97A /* WebViewController.swift */; };
+		A83C56E42167DCCE0082B97A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83C56E22167DCCE0082B97A /* WebViewController.swift */; };
 		A850683D213ABD6C0020DD19 /* TemplateAddImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A850683B213ABD6C0020DD19 /* TemplateAddImageTableViewCell.swift */; };
 		A850683E213ABD6C0020DD19 /* TemplateAddImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A850683C213ABD6C0020DD19 /* TemplateAddImageTableViewCell.xib */; };
 		A8506841213AD4C30020DD19 /* TemplateEditButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A850683F213AD4C30020DD19 /* TemplateEditButtonsTableViewCell.swift */; };
@@ -222,6 +224,7 @@
 		A81795CF212F4C040018D00E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A837CE18213F090900F2C72E /* TemplateAddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		A837CE19213F090900F2C72E /* TemplateAddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemplateAddImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		A83C56E22167DCCE0082B97A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A850683B213ABD6C0020DD19 /* TemplateAddImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAddImageTableViewCell.swift; sourceTree = "<group>"; };
 		A850683C213ABD6C0020DD19 /* TemplateAddImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemplateAddImageTableViewCell.xib; sourceTree = "<group>"; };
 		A850683F213AD4C30020DD19 /* TemplateEditButtonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditButtonsTableViewCell.swift; sourceTree = "<group>"; };
@@ -510,6 +513,7 @@
 				8EF663382136E9870085E02D /* TemplateRenderingDoneViewController.swift */,
 				A80978B62165C61C00BE8CB9 /* SettingsViewController.swift */,
 				A8F26E7D21673175003EC2D6 /* VideoPlayerViewController.swift */,
+				A83C56E22167DCCE0082B97A /* WebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1038,6 +1042,7 @@
 				A8002DDC215C1A06005251D9 /* TemplateCollectionViewCell.swift in Sources */,
 				A8F26E7C21671E88003EC2D6 /* MyVideoTemplateDefinition.swift in Sources */,
 				A8002DDD215C1A06005251D9 /* ViewModel.swift in Sources */,
+				A83C56E42167DCCE0082B97A /* WebViewController.swift in Sources */,
 				A8002DDE215C1A06005251D9 /* LetsGoViewController.swift in Sources */,
 				A80978B82165C61C00BE8CB9 /* SettingsViewController.swift in Sources */,
 				A8002DDF215C1A06005251D9 /* RendererRequest.swift in Sources */,
@@ -1091,6 +1096,7 @@
 				A8C2702F2130816A0015C4CD /* TemplateCollectionViewCell.swift in Sources */,
 				A8F26E7B21671C78003EC2D6 /* MyVideoTemplateDefinition.swift in Sources */,
 				A8D577E6212DE86100332803 /* ViewModel.swift in Sources */,
+				A83C56E32167DCCE0082B97A /* WebViewController.swift in Sources */,
 				A888BB7D2132D285004C04A7 /* LetsGoViewController.swift in Sources */,
 				A883CF312156D8B400307ECD /* RendererRequest.swift in Sources */,
 				A850683D213ABD6C0020DD19 /* TemplateAddImageTableViewCell.swift in Sources */,
