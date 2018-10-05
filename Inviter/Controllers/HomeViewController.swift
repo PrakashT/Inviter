@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MBProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -192,21 +193,27 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.TemplatesList.append(dic)
             }
             
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
             self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.automatic)
         })
     }
     
     func updateOrCreateUserToken() {
-        let tokenParameters = [
-            "token": UserDefaults.standard.value(forKey: "devicetoken")
-        ]
-        NetworkManager.Instance.postRequestWithFormData(tokenParameters as! Dictionary<String, String>, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: APIConstants.POST_CREATE_OR_UPDATE_DEVICE_TOKEN, withCompletionHandler: { (result) in
-            
-        })
+        if let tokenParameters = [
+            "token": UserDefaults.standard.value(forKey: "devicetoken").debugDescription ?? ""
+            ] as? Dictionary<String, Any>, let headers = AppHelper.Instance.getUserAuthParameters() as? Dictionary<String, String>
+        {
+            NetworkManager.Instance.postRequestWithFormData(tokenParameters as! Dictionary<String, String>, headerParameters: headers, url: APIConstants.POST_CREATE_OR_UPDATE_DEVICE_TOKEN, withCompletionHandler: { (result) in
+                
+            })
+        }
     }
     
     func getUserData()
      {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
         NetworkManager.Instance.getUserDetails(UserDefaults.standard.value(forKey: "userID") as! String) { (response) in
             print("RESTTTTTT: getUserDetails "+response.description)
             

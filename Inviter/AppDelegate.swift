@@ -65,11 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 //      logUser()
         
-        #if DEVELOPMENT
+//        #if DEVELOPMENT
         GIDSignIn.sharedInstance().clientID = "787030016917-dsv3dnlc53rh7i632kd7n08hml2udqua.apps.googleusercontent.com"
-        #else
-        GIDSignIn.sharedInstance().clientID = "787030016917-74051lbuucu2gm3b6a5ama0vurvn7q8n.apps.googleusercontent.com"
-        #endif
+//        #else
+//        GIDSignIn.sharedInstance().clientID = "787030016917-74051lbuucu2gm3b6a5ama0vurvn7q8n.apps.googleusercontent.com"
+//        #endif
         
         GIDSignIn.sharedInstance().delegate = self
 

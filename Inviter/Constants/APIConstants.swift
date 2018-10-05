@@ -48,7 +48,7 @@ class APIConstants
     static let GET_RENDERER_STATUS = MA_API_BASE_HOST+"aemen/api/render/status/"
 
     static let POST_MEDIA_DATA = MA_API_BASE_HOST+"aemen/api/rest/new/assetupload/"
-    static let POST_START_RENDERER_PROCESS = MA_API_BASE_HOST+"aemen/api/render/initrender/?final_video="
+    static let POST_START_RENDERER_PROCESS = MA_API_BASE_HOST+"aemen/api/render/initrender/"
     static let POST_START_RENDERER_PROCESS_FINAL = POST_START_RENDERER_PROCESS+"?final_video="
     static let POST_CREATE_OR_UPDATE_DEVICE_TOKEN = MA_API_BASE_HOST+"aemen/api/rest/new/devicetoken/"
     static let POST_DELETE_MyVIDEOS = MA_API_BASE_HOST+"/aemen/api/rest/new/myvideos/delete?id="

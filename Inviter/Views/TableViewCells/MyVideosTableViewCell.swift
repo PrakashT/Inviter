@@ -28,6 +28,7 @@ class MyVideosTableViewCell: UITableViewCell {
    
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var videoImgButton: UIButton!
     
     @IBOutlet weak var videoTypeLbl: UILabel!
     @IBOutlet weak var durationLbl: UILabel!
@@ -74,6 +75,8 @@ class MyVideosTableViewCell: UITableViewCell {
             shareButton.setTitle("Edit", for: .normal)
             shareButton.isUserInteractionEnabled = false
             deleteButton.isUserInteractionEnabled = false
+            videoImgButton.isUserInteractionEnabled = false
+
         }
         else if template.draft_status?.description.lowercased() == "final" && template.status?.description.lowercased() == "inprogress"
         {
@@ -83,6 +86,7 @@ class MyVideosTableViewCell: UITableViewCell {
             shareButton.setTitle("Download", for: .normal)
             shareButton.isUserInteractionEnabled = false
             deleteButton.isUserInteractionEnabled = false
+            videoImgButton.isUserInteractionEnabled = false
         }
         else if template.draft_status?.description.lowercased() == "draft" && template.status?.description.lowercased() == "success"
         {
@@ -90,17 +94,21 @@ class MyVideosTableViewCell: UITableViewCell {
             
             statusLbl.text = "Draft"
             shareButton.setTitle("Edit", for: .normal)
-            shareButton.isUserInteractionEnabled = true
+//            shareButton.isUserInteractionEnabled = true
             deleteButton.isUserInteractionEnabled = true
+            videoImgButton.isUserInteractionEnabled = true
+            shareButton.isUserInteractionEnabled = false // TODO
         }
         else if template.draft_status?.description.lowercased() == "final" && template.status?.description.lowercased() == "success"
         {
-            statusType = StatusType.FinalSuccessDownloadType
+//            statusType = StatusType.FinalSuccessDownloadType //TODO
+            statusType = StatusType.FinalSuccessShareType
             
             statusLbl.text = "Completed"
-            shareButton.setTitle("Download", for: .normal)//TODO: Check file Download or not if yes 'Download' else 'SHARE'
+            shareButton.setTitle("SHARE", for: .normal)//TODO: CHANGE Check file Download or not if yes 'Download' else 'SHARE'
             shareButton.isUserInteractionEnabled = true
             deleteButton.isUserInteractionEnabled = true
+            videoImgButton.isUserInteractionEnabled = true
         }
         else // If Failed + Draft Or Failed + Final
         {
@@ -108,8 +116,10 @@ class MyVideosTableViewCell: UITableViewCell {
             
             statusLbl.text = "Failed"
             shareButton.setTitle("Edit", for: .normal)
-            shareButton.isUserInteractionEnabled = true
+//            shareButton.isUserInteractionEnabled = true
             deleteButton.isUserInteractionEnabled = true
+            videoImgButton.isUserInteractionEnabled = false // TODO
+            shareButton.isUserInteractionEnabled = false
         }
         
         createdDateLbl.text = template.updatedAt?.description

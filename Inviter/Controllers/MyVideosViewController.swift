@@ -56,6 +56,8 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
 
         NetworkManager.Instance.getRequestData(APIConstants.GET_MYVIDEOS, userAuthParameters: AppHelper.Instance.getUserAuthParameters(), withCompletionHandler: { (response) in
             
+            self.TemplatesList.removeAll()
+            
             print("RESTTTTTT: getMyVideosList "+response.description)
             
             for data in response.array!
@@ -106,7 +108,7 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
             editThisTemplateButtonClicked(templateInfo: cell.templateInfo)
             break
         case .FinalSuccessDownloadType?: // DOWNLOAD
-            displayShareSheet(localVideoPath: cell.templateInfo.video ?? "")
+            
             break
         case .FinalSuccessShareType?: // SHARE
             displayShareSheet(localVideoPath: cell.templateInfo.video ?? "")
@@ -119,11 +121,16 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
     func didVideoImageButtonClicked(cell: MyVideosTableViewCell) {
     
         let indexPath = self.myVideosTableView.indexPath(for: cell)
-        if let template = TemplatesList[indexPath!.row] as? Template, template != nil, template.id != nil, template.id?.description.count ?? 0 > 0
+        if let template = TemplatesList[indexPath!.row] as? Template, template != nil, template.video != nil, template.video?.description.count ?? 0 > 0
         {
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            let vc = storyBoard.instantiateViewController(withIdentifier: "TemplateViewControllerID") as! TemplateViewController
+//            vc.templateInfo = template
+//            self.navigationController?.pushViewController(vc, animated: true)
+            
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: "TemplateViewControllerID") as! TemplateViewController
-            vc.templateInfo = template
+            let vc = storyBoard.instantiateViewController(withIdentifier: "VideoPlayerViewControllerID") as! VideoPlayerViewController
+            vc.videoURL = template.video
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -135,14 +142,16 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "TemplateEditViewControllerID") as! TemplateEditViewController
         vc.templateInfo = templateInfo
+        vc.isFromMyVideos = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func displayShareSheet(localVideoPath:String) {
-
+        
+        //        let localVideoPath = "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
         let videoURL = URL(fileURLWithPath: localVideoPath)
         
-        let activityItems: [Any] = [videoURL, "Check this out!"]
+        let activityItems: [Any] = [localVideoPath, "Check this out!"]
         let activityController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         
         activityController.popoverPresentationController?.sourceView = view

@@ -42,5 +42,4 @@ class TabBarController: UITabBarController
 //        tabbarItem.imageInsets = UIEdgeInsets(top: -5, left: 0, bottom:-15, right: 0)
 //        tabbarItem.largeContentSizeImageInsets  = UIEdgeInsets(top: -5, left: 0, bottom:-10, right: 0)
     }
-    
 }

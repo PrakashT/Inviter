@@ -63,7 +63,11 @@ class CreateAccountViewController: UIViewController, GIDSignInUIDelegate {
                 
                 if response["description"].description == "User registration successfully done"
                 {
+                    EventsLogHelper.Instance.logRegistrationEvent(userId: response["data"]["userID"].description, emailId: self.emailTextField.text!, signUpMethod: "Login", country: "", city: "")
+
                     UserDefaults.standard.set(response["data"]["userID"].description, forKey: "userID")
+                    UserDefaults.standard.set(self.emailTextField.text!, forKey: "emailID")
+
                     UserDefaults.standard.synchronize()
                     
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")

@@ -21,10 +21,12 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
     
     let sectionHeaderTitlesList: [String] = ["", "Music", "Edit Text", ""]
     private var templateDifinition : TemplateDefinition!
+    private var myVideoDifinition : MyVideoTemplateDefinition!
     var templateInfo : Template!
     var textFieldsDic = [String: UITextField]()
     var nextTextField:UITextField?
-
+    var isFromMyVideos = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +61,14 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         let definitionJsonStr = templateInfo.definition
         let data = definitionJsonStr?.data(using: .utf8)!
         do {
-            templateDifinition = try JSONDecoder().decode(TemplateDefinition.self, from: data!)
+            if !isFromMyVideos && templateDifinition == nil
+            {
+                templateDifinition = try JSONDecoder().decode(TemplateDefinition.self, from: data!)
+            }
+            else if isFromMyVideos && myVideoDifinition == nil
+            {
+                myVideoDifinition = try JSONDecoder().decode(MyVideoTemplateDefinition.self, from: data!)
+            }
             
         } catch let error as NSError {
             print(error)
@@ -206,8 +215,11 @@ class TemplateEditViewController: UIViewController, UITableViewDataSource, UITab
         }
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "TemplateRenderingDoneViewControllerID") as! TemplateRenderingDoneViewController
-        vc.startRendererVideo(isFinalVideo: true, templateDifinition: templateDifinition, templateDic: templateInfo)
+        vc.isFinalVideo = isFinalVideo
+        vc.templateDifinition = templateDifinition
+        vc.templateInfo = templateInfo
         self.navigationController?.pushViewController(vc, animated: true)
+//        vc.startRendererVideo(isFinalVideo: true, templateDifinition: templateDifinition, templateDic: templateInfo)
     }
     
     @objc func generatePreviewButtonClicked(sender: UIButton)

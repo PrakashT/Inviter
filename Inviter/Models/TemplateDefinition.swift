@@ -6,8 +6,6 @@
 //  Copyright © 2018 Manikanta Prakash Toram. All rights reserved.
 //
 
-import UIKit
-
 import Foundation
 
 struct TemplateDefinition: Codable {

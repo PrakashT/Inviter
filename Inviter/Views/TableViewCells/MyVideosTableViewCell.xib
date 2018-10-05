@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="528" height="384"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yx-Lb-OSF">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yx-Lb-OSF">
                                         <rect key="frame" x="15" y="10" width="503" height="17.5"/>
                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -254,6 +254,7 @@
                 <outlet property="durationLbl" destination="Ye7-kz-YlD" id="Ynd-sT-Ami"/>
                 <outlet property="shareButton" destination="Cu1-cU-4D7" id="LaE-SY-LQf"/>
                 <outlet property="statusLbl" destination="nFD-XO-gfJ" id="jVB-c4-j2W"/>
+                <outlet property="videoImgButton" destination="rmQ-Dh-6nf" id="Lo3-t0-Gap"/>
                 <outlet property="videoImgView" destination="1xX-g9-0vM" id="FHB-tp-jxq"/>
                 <outlet property="videoTitleLbl" destination="4yx-Lb-OSF" id="52A-5S-taT"/>
                 <outlet property="videoTypeLbl" destination="Fyh-Wd-PDK" id="8ju-Bs-Ids"/>

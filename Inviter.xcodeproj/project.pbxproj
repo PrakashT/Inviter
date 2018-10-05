@@ -65,13 +65,13 @@
 		A8002DF0215C1A06005251D9 /* ShowAllCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B10782131310D00F624DE /* ShowAllCollectionViewCell.swift */; };
 		A8002DF5215C1A06005251D9 /* TemplateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C2702E2130816A0015C4CD /* TemplateCollectionViewCell.xib */; };
 		A8002DF6215C1A06005251D9 /* TemplateEditMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8506848213AE80B0020DD19 /* TemplateEditMusicTableViewCell.xib */; };
-		A8002DF7215C1A06005251D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B70F215C0FF900BCBD5D /* GoogleService-Info.plist */; };
+		A8002DF7215C1A06005251D9 /* GoogleService-InfoPROD.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B70F215C0FF900BCBD5D /* GoogleService-InfoPROD.plist */; };
 		A8002DF8215C1A06005251D9 /* TemplateTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8506844213AE3550020DD19 /* TemplateTextFieldTableViewCell.xib */; };
 		A8002DF9215C1A06005251D9 /* TemplateEditButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8506840213AD4C30020DD19 /* TemplateEditButtonsTableViewCell.xib */; };
 		A8002DFA215C1A06005251D9 /* TemplateAddImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A850683C213ABD6C0020DD19 /* TemplateAddImageTableViewCell.xib */; };
 		A8002DFB215C1A06005251D9 /* ShowAllCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A88B10792131310D00F624DE /* ShowAllCollectionViewCell.xib */; };
 		A8002DFC215C1A06005251D9 /* ChooseMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8CEAFB8213720830051E307 /* ChooseMusicTableViewCell.xib */; };
-		A8002DFD215C1A06005251D9 /* GoogleService-InfoTesting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B711215C107800BCBD5D /* GoogleService-InfoTesting.plist */; };
+		A8002DFD215C1A06005251D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B711215C107800BCBD5D /* GoogleService-Info.plist */; };
 		A8002DFE215C1A06005251D9 /* MyVideosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A88B10812131B6AD00F624DE /* MyVideosTableViewCell.xib */; };
 		A8002DFF215C1A06005251D9 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C27033213095A00015C4CD /* CategoryCollectionViewCell.xib */; };
 		A8002E00215C1A06005251D9 /* TemplateAddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A837CE19213F090900F2C72E /* TemplateAddImageCollectionViewCell.xib */; };
@@ -125,8 +125,8 @@
 		A88B10832131B6AD00F624DE /* MyVideosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A88B10812131B6AD00F624DE /* MyVideosTableViewCell.xib */; };
 		A88B10852131DA9800F624DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A88B10842131DA9800F624DE /* LaunchScreen.storyboard */; };
 		A88B10872131E07A00F624DE /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B10862131E07A00F624DE /* CategoryDetailViewController.swift */; };
-		A892B710215C0FF900BCBD5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B70F215C0FF900BCBD5D /* GoogleService-Info.plist */; };
-		A892B712215C107800BCBD5D /* GoogleService-InfoTesting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B711215C107800BCBD5D /* GoogleService-InfoTesting.plist */; };
+		A892B710215C0FF900BCBD5D /* GoogleService-InfoPROD.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B70F215C0FF900BCBD5D /* GoogleService-InfoPROD.plist */; };
+		A892B712215C107800BCBD5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A892B711215C107800BCBD5D /* GoogleService-Info.plist */; };
 		A8A06C3A2132070400C5893C /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06C372132070400C5893C /* StringConstants.swift */; };
 		A8A06C3B2132070400C5893C /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06C382132070400C5893C /* APIConstants.swift */; };
 		A8A06C3C2132070400C5893C /* HelpConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A06C392132070400C5893C /* HelpConstants.swift */; };
@@ -146,6 +146,10 @@
 		A8D577CF212DE73300332803 /* InviterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577CE212DE73300332803 /* InviterUITests.swift */; };
 		A8D577E4212DE84300332803 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577E3212DE84300332803 /* Model.swift */; };
 		A8D577E6212DE86100332803 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D577E5212DE86100332803 /* ViewModel.swift */; };
+		A8F26E7B21671C78003EC2D6 /* MyVideoTemplateDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F26E7A21671C78003EC2D6 /* MyVideoTemplateDefinition.swift */; };
+		A8F26E7C21671E88003EC2D6 /* MyVideoTemplateDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F26E7A21671C78003EC2D6 /* MyVideoTemplateDefinition.swift */; };
+		A8F26E7E21673175003EC2D6 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F26E7D21673175003EC2D6 /* VideoPlayerViewController.swift */; };
+		A8F26E7F21673175003EC2D6 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F26E7D21673175003EC2D6 /* VideoPlayerViewController.swift */; };
 		A8F77947215435CF00E97004 /* TemplateDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F77946215435CF00E97004 /* TemplateDefinition.swift */; };
 		A8FDA7372155951E00471EE3 /* StringExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDA7362155951E00471EE3 /* StringExtenstion.swift */; };
 /* End PBXBuildFile section */
@@ -249,8 +253,8 @@
 		A88B10812131B6AD00F624DE /* MyVideosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyVideosTableViewCell.xib; sourceTree = "<group>"; };
 		A88B10842131DA9800F624DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A88B10862131E07A00F624DE /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
-		A892B70F215C0FF900BCBD5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A892B711215C107800BCBD5D /* GoogleService-InfoTesting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-InfoTesting.plist"; sourceTree = "<group>"; };
+		A892B70F215C0FF900BCBD5D /* GoogleService-InfoPROD.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-InfoPROD.plist"; sourceTree = "<group>"; };
+		A892B711215C107800BCBD5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8A06C372132070400C5893C /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		A8A06C382132070400C5893C /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		A8A06C392132070400C5893C /* HelpConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpConstants.swift; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 		A8D577D0212DE73300332803 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8D577E3212DE84300332803 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A8D577E5212DE86100332803 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		A8F26E7A21671C78003EC2D6 /* MyVideoTemplateDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVideoTemplateDefinition.swift; sourceTree = "<group>"; };
+		A8F26E7D21673175003EC2D6 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		A8F77946215435CF00E97004 /* TemplateDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateDefinition.swift; sourceTree = "<group>"; };
 		A8FDA7362155951E00471EE3 /* StringExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtenstion.swift; sourceTree = "<group>"; };
 		B4F12E194CCE61E51E1D6106 /* Pods_InviterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InviterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -450,8 +456,8 @@
 				A8D577DE212DE76700332803 /* Controllers */,
 				A8D577DC212DE75200332803 /* Services */,
 				A8D577AE212DE73200332803 /* AppDelegate.swift */,
-				A892B711215C107800BCBD5D /* GoogleService-InfoTesting.plist */,
-				A892B70F215C0FF900BCBD5D /* GoogleService-Info.plist */,
+				A892B711215C107800BCBD5D /* GoogleService-Info.plist */,
+				A892B70F215C0FF900BCBD5D /* GoogleService-InfoPROD.plist */,
 				A8D577B5212DE73300332803 /* Assets.xcassets */,
 				A878E31D2160CAD20099F088 /* InfoTesting.plist */,
 				A8D577BA212DE73300332803 /* Info.plist */,
@@ -503,6 +509,7 @@
 				8EF663362136E9100085E02D /* TemplateVideoRenderingViewController.swift */,
 				8EF663382136E9870085E02D /* TemplateRenderingDoneViewController.swift */,
 				A80978B62165C61C00BE8CB9 /* SettingsViewController.swift */,
+				A8F26E7D21673175003EC2D6 /* VideoPlayerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -536,6 +543,7 @@
 				A888BB8021331FB4004C04A7 /* Templates.swift */,
 				A8F77946215435CF00E97004 /* TemplateDefinition.swift */,
 				A883CF302156D8B400307ECD /* RendererRequest.swift */,
+				A8F26E7A21671C78003EC2D6 /* MyVideoTemplateDefinition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -713,13 +721,13 @@
 				8E89913A216622CF003DB168 /* CategoryHeaderCollectionViewCell.xib in Resources */,
 				A8002DF5215C1A06005251D9 /* TemplateCollectionViewCell.xib in Resources */,
 				A8002DF6215C1A06005251D9 /* TemplateEditMusicTableViewCell.xib in Resources */,
-				A8002DF7215C1A06005251D9 /* GoogleService-Info.plist in Resources */,
+				A8002DF7215C1A06005251D9 /* GoogleService-InfoPROD.plist in Resources */,
 				A8002DF8215C1A06005251D9 /* TemplateTextFieldTableViewCell.xib in Resources */,
 				A8002DF9215C1A06005251D9 /* TemplateEditButtonsTableViewCell.xib in Resources */,
 				A8002DFA215C1A06005251D9 /* TemplateAddImageTableViewCell.xib in Resources */,
 				A8002DFB215C1A06005251D9 /* ShowAllCollectionViewCell.xib in Resources */,
 				A8002DFC215C1A06005251D9 /* ChooseMusicTableViewCell.xib in Resources */,
-				A8002DFD215C1A06005251D9 /* GoogleService-InfoTesting.plist in Resources */,
+				A8002DFD215C1A06005251D9 /* GoogleService-Info.plist in Resources */,
 				8EF6C40221663CED00ED6BEF /* InfoTesting.plist in Resources */,
 				A8002DFE215C1A06005251D9 /* MyVideosTableViewCell.xib in Resources */,
 				A8002DFF215C1A06005251D9 /* CategoryCollectionViewCell.xib in Resources */,
@@ -739,7 +747,7 @@
 				A87EBCB0216243E8006C8F3C /* CategoryCollectionHeaderView.xib in Resources */,
 				A8C270302130816A0015C4CD /* TemplateCollectionViewCell.xib in Resources */,
 				A850684A213AE80B0020DD19 /* TemplateEditMusicTableViewCell.xib in Resources */,
-				A892B710215C0FF900BCBD5D /* GoogleService-Info.plist in Resources */,
+				A892B710215C0FF900BCBD5D /* GoogleService-InfoPROD.plist in Resources */,
 				A8506846213AE3550020DD19 /* TemplateTextFieldTableViewCell.xib in Resources */,
 				A80978BD2165C6C300BE8CB9 /* SettingsTableViewCell.xib in Resources */,
 				A8506842213AD4C30020DD19 /* TemplateEditButtonsTableViewCell.xib in Resources */,
@@ -748,7 +756,7 @@
 				A850683E213ABD6C0020DD19 /* TemplateAddImageTableViewCell.xib in Resources */,
 				A88B107B2131310D00F624DE /* ShowAllCollectionViewCell.xib in Resources */,
 				A8CEAFBA213720830051E307 /* ChooseMusicTableViewCell.xib in Resources */,
-				A892B712215C107800BCBD5D /* GoogleService-InfoTesting.plist in Resources */,
+				A892B712215C107800BCBD5D /* GoogleService-Info.plist in Resources */,
 				A88B10832131B6AD00F624DE /* MyVideosTableViewCell.xib in Resources */,
 				A8C27034213095A00015C4CD /* CategoryCollectionViewCell.xib in Resources */,
 				A837CE1B213F090900F2C72E /* TemplateAddImageCollectionViewCell.xib in Resources */,
@@ -1028,6 +1036,7 @@
 				A8002DDA215C1A06005251D9 /* MyVideosViewController.swift in Sources */,
 				A8002DDB215C1A06005251D9 /* TemplateDefinition.swift in Sources */,
 				A8002DDC215C1A06005251D9 /* TemplateCollectionViewCell.swift in Sources */,
+				A8F26E7C21671E88003EC2D6 /* MyVideoTemplateDefinition.swift in Sources */,
 				A8002DDD215C1A06005251D9 /* ViewModel.swift in Sources */,
 				A8002DDE215C1A06005251D9 /* LetsGoViewController.swift in Sources */,
 				A80978B82165C61C00BE8CB9 /* SettingsViewController.swift in Sources */,
@@ -1040,6 +1049,7 @@
 				A8002DE5215C1A06005251D9 /* Categories.swift in Sources */,
 				A8002DE6215C1A06005251D9 /* TemplateEditButtonsTableViewCell.swift in Sources */,
 				A8002DE7215C1A06005251D9 /* TabBarController.swift in Sources */,
+				A8F26E7F21673175003EC2D6 /* VideoPlayerViewController.swift in Sources */,
 				A8002DE8215C1A06005251D9 /* ChooseMusicViewController.swift in Sources */,
 				A8002DE9215C1A06005251D9 /* TemplateTitleViewController.swift in Sources */,
 				A8002DEA215C1A06005251D9 /* TemplateEditViewController.swift in Sources */,
@@ -1079,6 +1089,7 @@
 				A88B107F2131B61400F624DE /* MyVideosViewController.swift in Sources */,
 				A8F77947215435CF00E97004 /* TemplateDefinition.swift in Sources */,
 				A8C2702F2130816A0015C4CD /* TemplateCollectionViewCell.swift in Sources */,
+				A8F26E7B21671C78003EC2D6 /* MyVideoTemplateDefinition.swift in Sources */,
 				A8D577E6212DE86100332803 /* ViewModel.swift in Sources */,
 				A888BB7D2132D285004C04A7 /* LetsGoViewController.swift in Sources */,
 				A883CF312156D8B400307ECD /* RendererRequest.swift in Sources */,
@@ -1091,6 +1102,7 @@
 				A888BB7F2132E6BD004C04A7 /* Categories.swift in Sources */,
 				A8506841213AD4C30020DD19 /* TemplateEditButtonsTableViewCell.swift in Sources */,
 				A88B107D2131464F00F624DE /* TabBarController.swift in Sources */,
+				A8F26E7E21673175003EC2D6 /* VideoPlayerViewController.swift in Sources */,
 				A80978B72165C61C00BE8CB9 /* SettingsViewController.swift in Sources */,
 				8EF6632F2136E7050085E02D /* ChooseMusicViewController.swift in Sources */,
 				8EF663312136E84E0085E02D /* TemplateTitleViewController.swift in Sources */,

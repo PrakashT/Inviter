@@ -27,8 +27,11 @@ class TemplateRenderingDoneViewController: UIViewController
     
     var player : AVPlayer?
     var renderedVideoDic = [String: String]()
-    var templateInfo : Template!
     var timer:Timer!
+
+    var templateInfo : Template!
+    var isFinalVideo = false
+    var templateDifinition:TemplateDefinition!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,8 @@ class TemplateRenderingDoneViewController: UIViewController
         continueBrowsingButton.layer.borderColor = AppHelper.Instance.appLogoColor().cgColor
 
         notifyMeButton.layer.cornerRadius = (notifyMeButton.frame.height)/2
+        
+        startRendererVideo(isFinalVideo: isFinalVideo, templateDifinition: templateDifinition, templateDic: templateInfo)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,6 +124,7 @@ class TemplateRenderingDoneViewController: UIViewController
     
     func checkVideoRenderingDone()
     {
+        
         NetworkManager.Instance.getRequestData(APIConstants.GET_RENDERER_STATUS+(renderedVideoDic["taskid"]?.description)!, userAuthParameters: Dictionary<String, String>()
 ) { (result) in
             
@@ -128,6 +134,9 @@ class TemplateRenderingDoneViewController: UIViewController
 
     if result.dictionary?["status"] == "SUCCESS"
     {
+        let userId = UserDefaults.standard.value(forKey: "userID") as! String
+        let emailId = UserDefaults.standard.value(forKey: "emailID") as! String
+        
         self.timer.invalidate()
 
         let dic = result.dictionary?["output"]?.dictionary
@@ -135,7 +144,9 @@ class TemplateRenderingDoneViewController: UIViewController
         
         self.templateInfo.updateVideoInfo(videoValue: APIConstants.S3_BASE_URL + (dic?["outputvideo"]!.description ?? ""))
         self.templateInfo.updateThumbnailInfo(thumbnailValue: APIConstants.S3_BASE_URL + (dic!["thumb"]!.description ?? ""))
-        
+
+        EventsLogHelper.Instance.logTemplateFinalRenderEvent(userId: userId, emailId: emailId, videoUrl: dic?["outputvideo"]!.description ?? "", country: "", city: "")
+
         self.updateVideoData()
         MBProgressHUD.hide(for: self.viewPlay, animated: true)
     }
@@ -145,7 +156,6 @@ class TemplateRenderingDoneViewController: UIViewController
     func startRendererVideo(isFinalVideo: Bool, templateDifinition : TemplateDefinition, templateDic : Template)
     {
         titleLbl.text = isFinalVideo ? "Render" : "Preview"
-        templateInfo = templateDic
         let userId = UserDefaults.standard.value(forKey: "userID") as! String
         let emailId = UserDefaults.standard.value(forKey: "emailID") as! String
         
@@ -172,6 +182,8 @@ class TemplateRenderingDoneViewController: UIViewController
         //        let parameters = rendererRequest.dictionaryParameters
         let urlOfRendrerType = isFinalVideo ?  APIConstants.POST_START_RENDERER_PROCESS_FINAL+"true" : APIConstants.POST_START_RENDERER_PROCESS
         NetworkManager.Instance.postRequestWithRawValue(jsonString, headerParameters: AppHelper.Instance.getUserAuthParameters(), url: urlOfRendrerType) { (result) in
+           
+            EventsLogHelper.Instance.logTemplateFinalRenderEvent(userId: userId, emailId: emailId, templateId: rendererRequest.templateID, country: "", city: "")
             
             print("assaSAs", result.dictionary)
             for data in result.dictionary!

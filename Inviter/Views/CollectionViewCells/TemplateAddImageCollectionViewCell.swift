@@ -84,10 +84,12 @@ class TemplateAddImageCollectionViewCell: UICollectionViewCell {
         {
             if let image1 = imagesDic[imageInfo1.index.description]
             {
+                filledImageBGView1.isHidden = false
                 imageView1.image = image1
             }
             if imageInfo2 != nil, let image2 = imagesDic[(imageInfo2?.index.description)!]
             {
+                filledImageBGView2.isHidden = false
                 imageView2.image = image2
             }
         }

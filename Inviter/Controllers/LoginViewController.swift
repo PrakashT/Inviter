@@ -21,8 +21,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         logInButton.layer.borderColor = UIColor(red:0.82, green:0.15, blue:0.49, alpha:1).cgColor
-        emailTextField.text = "manikanta.pt@gmail.com"
-        passwordTextFiield.text = "mani123"
+//        emailTextField.text = "manikanta.pt@gmail.com"
+//        passwordTextFiield.text = "mani123"
        
 //        if FBSDKAccessToken.currentAccessTokenIsActive()
 //        {
@@ -50,7 +50,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 print("RESTTTTTT: "+response["description"].description)
                 
                 if response["description"].description == "User sign in successfully done"
-                {                    
+                {
+                    EventsLogHelper.Instance.logRegistrationEvent(userId: response["data"]["userID"].description, emailId: response["data"]["emailID"].description, signUpMethod: "Login", country: "", city: "")
+                    
                     UserDefaults.standard.set(response["data"]["userID"].description, forKey: "userID")
                     UserDefaults.standard.set(response["data"]["emailID"].description, forKey: "emailID")
 

@@ -49,6 +49,7 @@ class TemplateViewController: UIViewController
         
     }
     
+    
     @IBAction func cancelButtonClicked(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -90,6 +91,7 @@ class TemplateViewController: UIViewController
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "TemplateEditViewControllerID") as! TemplateEditViewController
         vc.templateInfo = templateInfo
+        vc.isFromMyVideos = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
